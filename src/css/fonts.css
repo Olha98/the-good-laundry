@@ -1,12 +1,14 @@
 @font-face {
     font-family: 'Futura PT';
-    src: url('FuturaPT-Heavy.eot');
+    src: url('../FuturaPT-Heavy.eot');
     src: local('Futura PT Heavy'), local('FuturaPT-Heavy'),
-        url('FuturaPT-Heavy.woff') format('woff');
+        url('FuturaPT-Heavy.eot?#iefix') format('embedded-opentype'),
+        url('FuturaPT-Heavy.woff') format('woff'),
+        url('FuturaPT-Heavy.ttf') format('truetype');
     font-weight: 900;
     font-style: normal;
 }
-/*
+
 @font-face {
     font-family: 'Futura PT';
     src: url('FuturaPT-Medium.eot');
@@ -237,4 +239,4 @@
     font-weight: normal;
     font-style: italic;
 }
- */
+

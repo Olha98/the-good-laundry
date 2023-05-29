@@ -4,15 +4,49 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" src="../src/css/main.css" />
-    <link rel="stylesheet" src="./css/normalize.css" />
+    <link href="./css/main.css" rel="stylesheet" type="text/css" />
     <title>The good laundry</title>
   </head>
   <body>
-    //= ./html/header.html
-    <h1 style="color: red">Hello</h1>
-    <main>//= all content inside</main>
+    <!-- <link rel="import" href="./html/header.html" /> -->
+    <!-- <div w3-include-html="./html/header.html"></div> -->
+    <!-- <div data-include="./html/header.html"></div> -->
+    <!-- <object type="text/html" data="./html/header.html"></object> -->
+    <header class="header">
+      <div class="header_promo flex-center">FREE SHIPPING | 100% Money Back Guarantee</div>
+      <div class="header__container flex-center">
+        <div class="header__search">
+          <img class="burger__svg" src="./svg/burger.svg" alt="burger" />
+          <img class="search__svg" src="./svg/search.svg" alt="search" />
+        </div>
 
-    //= ./html/footer.html
+        <div class="header__menu">
+          <img src="./svg/logo.svg" alt="avatar" class="avatar__svg_mob" />
+
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/#">Shop</a></li>
+            <li>
+              <img src="./svg/logo.svg" alt="avatar" class="avatar__svg" />
+            </li>
+            <li><a href="/#">About us</a></li>
+            <li><a href="/#">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="header__client-info">
+          <img class="avatar__svg" src="./svg/avatar.svg" alt="avatar" />
+          <img class="basket__svg" src="./svg/basket.svg" alt="basket" />
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="section">
+        <div class="hero_header__background">
+          <img class="box-header__img" src="./images/hero_header/box-header-sm.png" alt="box-header" />
+        </div>
+        <p>jwsiewqgiugwbivubcwiebvwieiub</p>
+      </section>
+    </main>
   </body>
 </html>

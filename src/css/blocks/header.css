@@ -1,0 +1,45 @@
+.header {
+  min-height: 60px;
+  width: 100%;
+}
+
+.header_promo {
+  font-size: 12px;
+  line-height: 15px;
+  height: 28px;
+  background-color: var(--secondary-bg-color);
+  color: var(--secondary--text-color);
+}
+.header__container {
+  padding: 5px 15px 0px 15px;
+}
+
+.search__svg {
+  padding-left: 14px;
+}
+
+.avatar__svg {
+  padding-right: 11px;
+}
+.avatar__svg_mob {
+  padding-left: 50px;
+}
+
+.header__menu {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.header__menu ul {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .header__menu ul {
+    display: flex;
+    width: 100%;
+  }
+  .logo-mob {
+    display: none;
+  }
+}

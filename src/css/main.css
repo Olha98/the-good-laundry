@@ -1,6 +1,9 @@
 @import '../fonts/stylesheet.css';
 @import './vars.css';
-@import './normalize.css';
+@import './reset.css';
+
+@import './blocks/header.css';
+@import './blocks/hero_header.css';
 
 html {
   box-sizing: border-box;
@@ -15,18 +18,20 @@ html {
 }
 
 body {
+  --width-device: 1920px;
   font-family: 'Futura PT';
-  font-weight: 400;
-  background: red;
-}
-
-h1{
-  color: blue;
+  font-style: normal;
+  font-weight: normal;
+  color: var(--main--text-color);
+  background-color: var(--main-bg-color);
+  max-width: var(--width-device);
+  overflow-x: hidden;
+  margin: 0 auto;
 }
 
 img {
   max-width: 100%;
-  display: block;
+  display: inline-block;
   height: auto;
 }
 
@@ -35,12 +40,10 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-  margin: 0;
-}
-
+h6,
 p {
   margin: 0;
+  color: var(--main--text-color);
 }
 
 ul,
@@ -48,10 +51,13 @@ li {
   margin: 0;
   padding: 0;
   list-style: none;
+  list-style-type: none;
+  color: var(--main--text-color);
 }
 
 a {
   text-decoration: none;
+  color: var(--main--text-color);
 }
 
 button:hover {
@@ -69,6 +75,69 @@ button:focus {
   outline: none;
 }
 
-#svg-sprite {
-  display: none;
+.page_section {
+  max-width: var(--container-width-lg);
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.container {
+  min-width: 320px;
+  padding: 0px 15px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 1240px) {
+  body {
+    --width-device: 1240px;
+  }
+  .container {
+    padding: 0px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    --width-device: 768px;
+  }
+
+  .container {
+    width: var(--width-device);
+    padding: 0px 30px;
+  }
+}
+
+@media screen and (min-width: 375px) {
+  body {
+    --width-device: 375px;
+  }
+  .container {
+    width: var(--width-device);
+    padding: 0px 15px;
+  }
+}
+
+/* visually-hidden helper */
+.visually-hidden:not(:focus):not(:active),
+input[type='checkbox'].visually-hidden,
+input[type='radio'].visually-hidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+
+  white-space: nowrap;
+
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }

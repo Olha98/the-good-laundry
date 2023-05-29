@@ -1,0 +1,27 @@
+.section {
+  border: 1px solid red;
+}
+
+.hero_header__background {
+  position: relative;
+  height: 90vh;
+  background: #d1efe5;
+}
+
+/* .hero_header__background :after {
+  content: '';
+  background: #000;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+} */
+
+.header__img {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+}
