@@ -1,0 +1,12 @@
+{
+  "name": "the-good-laundry",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node src/index.html",
+    "test": "npm run lint && npm run test:only"
+  },
+  "author": "Olha Hrymchak",
+  "license": "ISC"
+}
