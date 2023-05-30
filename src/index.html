@@ -9,21 +9,31 @@
   </head>
   <body>
     <header class="header">
-      <div class="header_promo flex-center">FREE SHIPPING | 100% Money Back Guarantee</div>
-      <div class="header__container flex-center">
-        <div class="header__search">
-          <img class="burger__svg" src="./svg/icons/burger.svg" alt="burger" />
-          <img class="search__svg" src="./svg/icons/search.svg" alt="search" />
-        </div>
+      <div class="header_promo flex-center"><p>FREE SHIPPING | 100% Money Back Guarantee</p></div>
+      <div class="header__container flex-between-center">
+        <div class="hamburger-menu">
+          <input id="menu__toggle" type="checkbox" />
+          <label class="menu__btn" for="menu__toggle">
+            <span></span>
+          </label>
 
-        <div class="header__menu flex-center">
-          <img src="./svg/icons/logo.svg" alt="avatar" class="avatar__svg_mob" />
+          <ul class="menu__box">
+            <li><a class="menu__item" href="#">Home</a></li>
+            <li><a class="menu__item" href="#">Shop</a></li>
+            <li><a class="menu__item" href="#">About us</a></li>
+            <li><a class="menu__item" href="#">Blog</a></li>
+          </ul>
+        </div>
+        <img class="search__svg" src="./svg/icons/search.svg" alt="search" />
+
+        <div class="header__menu">
+          <img src="./svg/icons/logo.svg" alt="Logo" class="logo__svg_mob" />
           <nav>
-            <ul class="flex-between-center">
+            <ul>
               <li><a href="/">Home</a></li>
               <li><a href="/#">Shop</a></li>
               <li>
-                <a href="/#"><img src="./svg/icons/logo.svg" alt="avatar" class="avatar__svg" /></a>
+                <a href="/#"><img src="./svg/icons/logo.svg" alt="Logo" class="logo__svg" /></a>
               </li>
               <li><a href="/#">About us</a></li>
               <li><a href="/#">Blog</a></li>
@@ -31,9 +41,9 @@
           </nav>
         </div>
 
-        <div class="header__client-info">
+        <div class="header__client-info flex-center">
           <img class="avatar__svg" src="./svg/icons/avatar.svg" alt="avatar" />
-          <img class="basket__svg" src="./svg/icons/basket.svg" alt="basket" />
+          <span class="basket__wrapper"><img class="basket__svg" src="./svg/icons/basket.svg" alt="basket" /></span>
         </div>
       </div>
     </header>
@@ -41,18 +51,30 @@
     <main>
       <section class="section">
         <div class="hero_header__background">
-          <div class="hero_header_info">
-            <h1>Clean Laundry. No Plastic Jugs</h1>
-            <p>
-              Turn an everyday chore into an act of loving kindness. Earth Breeze provides a powerful clean while making
-              a difference.
-            </p>
+          <img class="color-wave_header__img" src="./images/common/header_bg 1.png" alt="Color wave" />
+          <div class="hero_header__content-wrapper">
+            <img class="box-lg__img" src="./images/hero_header/box-header-lg.png" alt="Box header" />
+            <div class="hero_header__content">
+              <div class="hero_header_info">
+                <h1>Clean Laundry. No Plastic Jugs</h1>
+                <p>
+                  Turn an everyday chore into an act of loving kindness. Earth Breeze provides a powerful clean while
+                  making a difference.
+                </p>
+              </div>
+
+              <img class="box-sm_img" src="./images/hero_header/box-header-sm.png" alt="Box header" />
+
+              <button class="button_primary"><a href="/#">Shop Now</a></button>
+              <p class="hero_header_description">Try it risk-free with our 30 days guarantee</p>
+            </div>
           </div>
-          <!-- pictures -->
-          <img class="box-header__img" src="./images/hero_header/box-header-sm.png" alt="box-header" />
-          <button class="button_primary"><a href="/#">Shop Now</a></button>
-          <p class="hero_header_description">Try it risk-free with our 30 days guarantee</p>
-          <img class="wave_header_img" src="./images/wave/wave-header-sm.png" alt="wave_header" />
+          <picture class="wave_header_pic">
+            <source media="(min-width: 1240px)" srcset="./images/wave/wave-header-bt-lg.png" />
+            <source media="(min-width: 768px)" srcset="./images/wave/wave-header-sm.png" />
+            <img class="wave_header_img" src="./images/wave/wave-header-sm.png" alt="wave_header" />
+          </picture>
+
           <div class="hero_header_features">
             <h2>As featured in</h2>
             <ul class="flex-between-center">
@@ -64,7 +86,6 @@
                   ><img src="./svg/logos/business.svg" alt="Featured in Business Insider company" class="business__svg"
                 /></a>
               </li>
-
               <li>
                 <a href="#"
                   ><img src="./svg/logos/home.svg" alt="Featured in Home Centre company" class="home__svg"

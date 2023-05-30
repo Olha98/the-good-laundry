@@ -142,6 +142,21 @@ button:focus {
     width: var(--width-device);
     padding: 0px 30px;
   }
+
+  .heading {
+  }
+
+  .heading :first-child {
+    font-size: 44px;
+    line-height: 52px;
+    margin-bottom: 15px;
+  }
+
+  .heading :last-child {
+    margin-bottom: 10px;
+    font-size: 17px;
+    line-height: 24px;
+  }
 }
 
 @media screen and (min-width: 375px) {

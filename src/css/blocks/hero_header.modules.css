@@ -1,19 +1,30 @@
 .hero_header__background {
   position: relative;
-  /* height: 85vh; */
   max-height: 694px;
   background: #d1efe5;
   width: 100%;
-  padding-inline: 15px;
+  padding: 40px 15px;
+}
+
+.hero_header__content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.color-wave_header__img {
+  display: none;
+}
+
 .hero_header_info {
-  margin-top: 40px;
   text-align: center;
   width: 100%;
+}
+.box-sm_img {
+  margin-block: 15px 24.67px;
+}
+.box-lg__img {
+  display: none;
 }
 
 .hero_header_info h1 {
@@ -32,6 +43,7 @@
   line-height: 24px;
   font-weight: 300;
   letter-spacing: 0.5px;
+  margin: 0 auto;
 }
 .button_primary {
   height: 44px;
@@ -53,14 +65,6 @@
   line-height: 23px;
 }
 
-.box-header__img {
-  margin-block: 15px 24.67px;
-}
-
-.box-header__img img {
-  margin: 0 auto;
-}
-
 .hero_header_description {
   font-weight: 450;
   font-size: 13px;
@@ -68,16 +72,21 @@
   margin-top: 10px;
 }
 
-.wave_header_img {
+.wave_header_pic {
   position: absolute;
   left: 50%;
   bottom: -1%;
   transform: translate(-50%, 0%);
+  width: 100%;
+}
+.wave_header_pic img {
   object-fit: cover;
   width: 100%;
 }
+
 .hero_header_features {
   margin-block: 40px 47px;
+  /* padding-inline: 40px 47px; */
   width: 100%;
 }
 
@@ -89,4 +98,160 @@
   text-align: center;
 
   margin-bottom: 16.69px;
+}
+@media screen and (min-width: 413px) {
+  .hero_header_info p {
+    max-width: 400px;
+  }
+  .hero_header_features ul {
+    margin: 0 auto;
+    max-width: 400px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .hero_header__background {
+    height: 770px;
+    max-height: 770px;
+  }
+  .hero_header__content {
+    margin-top: 100px;
+  }
+
+  .color-wave_header__img {
+    display: inline-block;
+    position: absolute;
+    top: 0%;
+    left: 0;
+    width: 100%;
+    /* height: 240px; */
+  }
+  .hero_header_features {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero_header_features h2 {
+    display: flex;
+    margin-right: 6%;
+    height: 100%;
+    margin-bottom: 0;
+  }
+  .hero_header_features ul {
+    display: flex;
+    max-width: 400px;
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 1240px) {
+  .hero_header__content {
+    margin-top: 150px;
+  }
+  .hero_header__background {
+    height: 870px;
+    max-height: 870px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .box-sm_img {
+    display: none;
+  }
+  .box-lg__img {
+    display: inline-block;
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    transform: translate(0%, -50%);
+  }
+
+  .hero_header__background {
+    height: 970px;
+    max-height: 970px;
+  }
+
+  .box__pic {
+    display: none;
+    position: absolute;
+    right: 0;
+  }
+  .hero_header__content-wrapper {
+    max-width: 1500px;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 55%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+  .hero_header__content {
+    position: absolute;
+    align-items: flex-start;
+    margin-top: 0px;
+    width: 450px;
+    left: 20%;
+    top: 50%;
+    max-width: 90%;
+    transform: translate(-50%, -50%);
+  }
+
+  .hero_header_info h1 {
+    font-size: 62px;
+    line-height: 73px;
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .hero_header_info p {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: left;
+    max-width: 100%;
+    margin-block: 20px 40px;
+  }
+  .button_primary {
+    width: 300px;
+    height: 55px;
+  }
+  .button_primary a {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+  }
+  .hero_header_description {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    margin-top: 20px;
+  }
+  .hero_header_features {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 933.53px;
+  }
+  .hero_header_features ul {
+    max-width: 70%;
+  }
+
+  .hero_header_features h2 {
+    font-size: 28px;
+    line-height: 34px;
+     margin-right: 10%;
+  }
+
+  .elle__svg {
+    width: 122.17px;
+    height: 50px;
+  }
+  .business__svg {
+    width: 145.23px;
+    height: 45px;
+  }
+  .home__svg {
+    width: 224.13px;
+    height: 22px;
+  }
 }
