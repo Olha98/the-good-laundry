@@ -11,18 +11,19 @@
   color: var(--secondary--text-color);
 }
 .header__container {
-  padding: 5px 15px 0px 15px;
+  padding: 5px 15px 3px 15px;
 }
 
 .search__svg {
-  padding-left: 14px;
+  padding-left: 14.02px;
 }
 
 .avatar__svg {
-  padding-right: 11px;
+  padding-right: 10px;
 }
+
 .avatar__svg_mob {
-  padding-left: 50px;
+  margin: 0 auto;
 }
 
 .header__menu {

@@ -1,0 +1,132 @@
+@font-face {
+  font-family: 'Coolvetica Lt';
+  src: url('../fonts/CoolveticaLt-Regular.woff2') format('woff2'),
+    url('../fonts/CoolveticaLt-Regular.woff') format('woff');
+
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Coolvetica Bk';
+  src: url('../fonts/CoolveticaBk-Regular.woff2') format('woff2'),
+    url('../fonts/CoolveticaBk-Regular.woff') format('woff');
+
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Coolvetica Rg';
+  src: url('../fonts/CoolveticaRg-BoldItalic.woff2') format('woff2'),
+    url('../fonts/CoolveticaRg-BoldItalic.woff') format('woff');
+
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Coolvetica Rg';
+
+  src: url('../fonts/CoolveticaRg-Regular.woff2') format('woff2'),
+    url('../fonts/CoolveticaRg-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Coolvetica Ul';
+
+  src: url('../fonts/CoolveticaUl-Regular.woff2') format('woff2'),
+    url('../fonts/CoolveticaUl-Regular.woff') format('woff');
+
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Coolvetica Hv';
+
+  src: url('../fonts/CoolveticaHv-Regular.woff2') format('woff2'),
+    url('../fonts/CoolveticaHv-Regular.woff') format('woff');
+
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Coolvetica Rg';
+
+  src: url('../fonts/CoolveticaRg-Italic.woff2') format('woff2'),
+    url('../fonts/CoolveticaRg-Italic.woff') format('woff');
+
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Coolvetica El';
+
+  src: url('../fonts/CoolveticaEl-Regular.woff2') format('woff2'),
+    url('../fonts/CoolveticaEl-Regular.woff') format('woff');
+
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Coolvetica Bk';
+
+  src: url('../fonts/CoolveticaBk-Italic.woff2') format('woff2'),
+    url('../fonts/CoolveticaBk-Italic.woff') format('woff');
+
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Coolvetica Lt';
+
+  src: url('../fonts/CoolveticaLt-Italic.woff2') format('woff2'),
+    url('../fonts/CoolveticaLt-Italic.woff') format('woff');
+
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Coolvetica Hv';
+
+  src: url('../fonts/CoolveticaHv-Italic.woff2') format('woff2'),
+    url('../fonts/CoolveticaHv-Italic.woff') format('woff');
+
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Coolvetica Ul';
+  src: url('../fonts/CoolveticaUl-Italic.woff2') format('woff2'),
+    url('../fonts/CoolveticaUl-Italic.woff') format('woff');
+
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Coolvetica El';
+  src: url('../fonts/CoolveticaEl-Italic.woff2') format('woff2'),
+    url('../fonts/CoolveticaEl-Italic.woff') format('woff');
+
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Coolvetica Rg';
+  src: url('../fonts/../fonts/CoolveticaRg-Bold.woff2') format('woff2'),
+    url('../fonts/CoolveticaRg-Bold.woff') format('woff');
+
+  font-weight: bold;
+  font-style: normal;
+}

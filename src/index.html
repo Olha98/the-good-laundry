@@ -12,18 +12,18 @@
       <div class="header_promo flex-center">FREE SHIPPING | 100% Money Back Guarantee</div>
       <div class="header__container flex-center">
         <div class="header__search">
-          <img class="burger__svg" src="./svg/burger.svg" alt="burger" />
-          <img class="search__svg" src="./svg/search.svg" alt="search" />
+          <img class="burger__svg" src="./svg/icons/burger.svg" alt="burger" />
+          <img class="search__svg" src="./svg/icons/search.svg" alt="search" />
         </div>
 
-        <div class="header__menu">
-          <img src="./svg/logo.svg" alt="avatar" class="avatar__svg_mob" />
+        <div class="header__menu flex-center">
+          <img src="./svg/icons/logo.svg" alt="avatar" class="avatar__svg_mob" />
           <nav>
-            <ul>
+            <ul class="flex-between-center">
               <li><a href="/">Home</a></li>
               <li><a href="/#">Shop</a></li>
               <li>
-                <img src="./svg/logo.svg" alt="avatar" class="avatar__svg" />
+                <a href="/#"><img src="./svg/icons/logo.svg" alt="avatar" class="avatar__svg" /></a>
               </li>
               <li><a href="/#">About us</a></li>
               <li><a href="/#">Blog</a></li>
@@ -32,11 +32,12 @@
         </div>
 
         <div class="header__client-info">
-          <img class="avatar__svg" src="./svg/avatar.svg" alt="avatar" />
-          <img class="basket__svg" src="./svg/basket.svg" alt="basket" />
+          <img class="avatar__svg" src="./svg/icons/avatar.svg" alt="avatar" />
+          <img class="basket__svg" src="./svg/icons/basket.svg" alt="basket" />
         </div>
       </div>
     </header>
+    <!-- START HERO SECTION -->
     <main>
       <section class="section">
         <div class="hero_header__background">
@@ -47,12 +48,111 @@
               a difference.
             </p>
           </div>
+          <!-- pictures -->
           <img class="box-header__img" src="./images/hero_header/box-header-sm.png" alt="box-header" />
-          <button class="button_primary"><a href="#">Shop Now</a></button>
+          <button class="button_primary"><a href="/#">Shop Now</a></button>
           <p class="hero_header_description">Try it risk-free with our 30 days guarantee</p>
           <img class="wave_header_img" src="./images/wave/wave-header-sm.png" alt="wave_header" />
+          <div class="hero_header_features">
+            <h2>As featured in</h2>
+            <ul class="flex-between-center">
+              <li>
+                <a href="/#"><img src="./svg/logos/elle.svg" alt="Featured in Elle company" class="elle__svg" /></a>
+              </li>
+              <li>
+                <a href="#"
+                  ><img src="./svg/logos/business.svg" alt="Featured in Business Insider company" class="business__svg"
+                /></a>
+              </li>
+
+              <li>
+                <a href="#"
+                  ><img src="./svg/logos/home.svg" alt="Featured in Home Centre company" class="home__svg"
+                /></a>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
+      <!--END OF HERO SECTION -->
+      <!-- START ECO-FRIENDLY SECTION -->
+      <section class="container">
+        <div class="eco-friendly__star heading">
+          <h3>Hi! The new eco-friendly way to do your laundry</h3>
+          <p>
+            This is the new eco-friendly way to do laundry. These are compact sheets that help you get a clean laundry.
+          </p>
+        </div>
+        <ul class="eco-friendly__list">
+          <li>
+            <img src="./svg/eco-friendly/eco.svg" alt="Eco-friendly" />
+            <p>Eco-friendly</p>
+          </li>
+          <li>
+            <img src="./svg/eco-friendly/plastic.svg" alt="Plastic-free" />
+            <p>Plastic-free</p>
+          </li>
+          <li>
+            <img src="./svg/eco-friendly/reduces.svg" alt="Reduces carbon footprint" />
+            <p>Reduces carbon footprint</p>
+          </li>
+          <li>
+            <img src="./svg/eco-friendly/paraben.svg" alt="Paraben free" />
+            <p>Paraben free</p>
+          </li>
+          <li>
+            <img src="./svg/eco-friendly/allergic.svg" alt="Without allergens" />
+            <p>Without allergens</p>
+          </li>
+          <li>
+            <img src="./svg/eco-friendly/vegan.svg" alt="Vegan" />
+            <p>Vegan</p>
+          </li>
+          <li>
+            <img src="./svg/eco-friendly/sensitive_skin.svg" alt="Sensitive on skin" />
+            <p>Sensitive on skin</p>
+          </li>
+        </ul>
+        <div class="eco-friendly__base heading">
+          <h3>the good laundry Hype</h3>
+          <p>Hear the hype from people who have tried our the good laundry packets and left reviews.</p>
+        </div>
+        <div class="eco-friendly__carousel flex-center-col">
+          <ul class="eco-friendly__carousel-list">
+            <li>
+              <article>
+                <h4>Great for the environment.</h4>
+                <p>
+                  “Do Laundry Detergent Sheets Work? Yes, laundry detergent sheets really work! While the idea of a
+                  detergent in a sheet may seem strange, they are just as effective as a powder or detergent.”
+                </p>
+                <div></div>
+              </article>
+              <div class="eco-friendly__carousel-promo">
+                <img src="./images/eco-friendly/box_1-sm.png" alt="Box by Scott G." class="box_1__img" />
+                <div class="eco-friendly__carousel-promo-info">
+                  <div>
+                    <h4>Scott G.</h4>
+                    <img src="./svg/icons/stars_review.svg" alt="Star Review" />
+                  </div>
+                  <button><img src="./svg/icons/arrow.svg" alt="Right arrow" /></button>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <nav class="carousel_dots">
+            <input id="carousel-item-1" type="radio" name="carousel-dots" />
+            <label for="carousel-item-1">Go to item 1</label>
+
+            <input id="carousel-item-2" type="radio" name="carousel-dots" checked />
+            <label for="carousel-item-2">Go to item 2</label>
+
+            <input id="carousel-item-3" type="radio" name="carousel-dots" />
+            <label for="carousel-item-3">Go to item 3</label>
+          </nav>
+        </div>
+      </section>
+      <!-- END OF ECO-FRIENDLY SECTION -->
     </main>
   </body>
 </html>

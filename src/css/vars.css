@@ -5,6 +5,8 @@
   --forth-color: #5b8c97;
   --fifth-color: #4d8e6d;
   --sixth-color: #fad3ca;
+  --seventh-color: #262324;
+  --eighth-color:#CCCCCC;
 
   --main--text-color: #141c1b;
   --secondary--text-color: #ffffff;
@@ -13,11 +15,12 @@
   --secondary-bg-color: #112d2a;
   --section-main-bg-color: #d1efe5;
   --section-secondary-bg-color: #f9bbac;
-  --section-secondary-bg-color: #f4f1ea;
-  --section-secondary-bg-color: #f8bb71;
-  --section-secondary-bg-color: #e1e7c7;
+  --section-third-bg-color: #f4f1ea;
+  --section-forth-bg-color: #f8bb71;
+  --section-sixth-bg-color: #e1e7c7;
 
-  -button-main-color: #f8bb71;
+  --button-main-color: #f8bb71;
+
 
   --border-radius-base: 20px;
   --container-width-lg: 1440px;
