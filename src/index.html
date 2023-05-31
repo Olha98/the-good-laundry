@@ -8,6 +8,7 @@
     <title>The good laundry</title>
   </head>
   <body>
+    <!-- START HEADER SECTION -->
     <header class="header">
       <div class="header_promo flex-center"><p>FREE SHIPPING | 100% Money Back Guarantee</p></div>
       <div class="header__container flex-between-center">
@@ -29,7 +30,7 @@
         <div class="header__menu">
           <img src="./svg/icons/logo.svg" alt="Logo" class="logo__svg_mob" />
           <nav>
-            <ul>
+            <ul class="links-animate">
               <li><a href="/">Home</a></li>
               <li><a href="/#">Shop</a></li>
               <li>
@@ -43,10 +44,12 @@
 
         <div class="header__client-info flex-center">
           <img class="avatar__svg" src="./svg/icons/avatar.svg" alt="avatar" />
-          <span class="basket__wrapper"><img class="basket__svg" src="./svg/icons/basket.svg" alt="basket" /></span>
+          <img class="basket__svg" src="./svg/icons/basket.svg" alt="basket" />
+          <span class="basket__count"></span>
         </div>
       </div>
     </header>
+    <!-- END HEADER SECTION -->
     <!-- START HERO SECTION -->
     <main>
       <section class="section">
@@ -97,7 +100,7 @@
       </section>
       <!--END OF HERO SECTION -->
       <!-- START ECO-FRIENDLY SECTION -->
-      <section class="container">
+      <section class="eco-friendly__section container flex-center-col">
         <div class="eco-friendly__star heading">
           <h3>Hi! The new eco-friendly way to do your laundry</h3>
           <p>
@@ -136,18 +139,57 @@
         </ul>
         <div class="eco-friendly__base heading">
           <h3>the good laundry Hype</h3>
-          <p>Hear the hype from people who have tried our the good laundry packets and left reviews.</p>
+          <p class="eco-friendly__text">
+            Hear the hype from people who have tried our the good laundry packets and left reviews.
+          </p>
         </div>
         <div class="eco-friendly__carousel flex-center-col">
           <ul class="eco-friendly__carousel-list">
-            <li>
+            <li class="eco-friendly__carousel-item">
               <article>
                 <h4>Great for the environment.</h4>
                 <p>
                   “Do Laundry Detergent Sheets Work? Yes, laundry detergent sheets really work! While the idea of a
                   detergent in a sheet may seem strange, they are just as effective as a powder or detergent.”
                 </p>
-                <div></div>
+              </article>
+              <div class="eco-friendly__carousel-promo">
+                <img src="./images/eco-friendly/box_1-sm.png" alt="Box by Scott G." class="box_1__img" />
+                <div class="eco-friendly__carousel-promo-info">
+                  <div>
+                    <h4>Scott G.</h4>
+                    <img src="./svg/icons/stars_review.svg" alt="Star Review" />
+                  </div>
+                  <button><img src="./svg/icons/arrow.svg" alt="Right arrow" /></button>
+                </div>
+              </div>
+            </li>
+            <li class="eco-friendly__carousel-item">
+              <article>
+                <h4>Great for the environment.</h4>
+                <p>
+                  “Do Laundry Detergent Sheets Work? Yes, laundry detergent sheets really work! While the idea of a
+                  detergent in a sheet may seem strange, they are just as effective as a powder or detergent.”
+                </p>
+              </article>
+              <div class="eco-friendly__carousel-promo">
+                <img src="./images/eco-friendly/box_1-sm.png" alt="Box by Scott G." class="box_1__img" />
+                <div class="eco-friendly__carousel-promo-info">
+                  <div>
+                    <h4>Scott G.</h4>
+                    <img src="./svg/icons/stars_review.svg" alt="Star Review" />
+                  </div>
+                  <button><img src="./svg/icons/arrow.svg" alt="Right arrow" /></button>
+                </div>
+              </div>
+            </li>
+            <li class="eco-friendly__carousel-item">
+              <article>
+                <h4>Great for the environment.</h4>
+                <p>
+                  “Do Laundry Detergent Sheets Work? Yes, laundry detergent sheets really work! While the idea of a
+                  detergent in a sheet may seem strange, they are just as effective as a powder or detergent.”
+                </p>
               </article>
               <div class="eco-friendly__carousel-promo">
                 <img src="./images/eco-friendly/box_1-sm.png" alt="Box by Scott G." class="box_1__img" />
@@ -172,8 +214,90 @@
             <label for="carousel-item-3">Go to item 3</label>
           </nav>
         </div>
+
+        <div class="eco-friendly__base heading">
+          <h3>Our video</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec leo tortor, congue at ac luctus urna
+            fringilla sit amet.
+          </p>
+        </div>
+        <div class="eco-friendly__video">
+          <div class="eco-friendly__video-container">
+            <video poster="./images/eco-friendly/poster-video.png">
+              <source src="movie.mp4" type="video/mp4" />
+              <source src="movie.ogg" type="video/ogg" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <button class="eco-friendly__video-play">
+            <img src="./svg/icons/play.svg" alt="Video play" class="play__svg" />
+          </button>
+        </div>
       </section>
       <!-- END OF ECO-FRIENDLY SECTION -->
     </main>
+    <!-- FOOTER SECTION -->
+    <footer class="footer">
+      <picture class="wave__pic">
+        <source media="(min-width: 1440px)" srcset="./images/wave/wave-footer-top-lg.png" />
+        <source media="(min-width: 768px)" srcset="./images/wave/wave-footer-top-sm.png" />
+        <img src="./images/wave/wave-footer-top-sm.png" alt="the good laundry footer" />
+      </picture>
+
+      <div class="container">
+        <div class="footer-wrapper__info flex-center-col">
+          <img src="./svg/icons/logo.svg" alt="Logo" class="footer-logo__svg" />
+          <h4>The exclusive email club</h4>
+          <p>Give us those e-digits. you won't regret it.</p>
+          <form action="subscriberform.js" method="post" class="footer-form flex-center-col">
+            <input type="email" name="email" placeholder="Enter your email" />
+            <button type="submit" class="button_primary">SUBSCRIBE</button>
+          </form>
+        </div>
+
+        <nav class="footer-menu flex-center">
+          <ul class="links-animate">
+            <li><h5 href="#">Quick Links</h5></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">About us</a></li>
+          </ul>
+          <ul class="links-animate">
+            <li><h5 href="#">Shipping Info</h5></li>
+            <li><a href="#">Refunds & Returns</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+
+          <ul class="links-animate">
+            <li><h5 href="#">Shop</h5></li>
+            <li><a href="#">Fragrance-Free sheets</a></li>
+            <li><a href="#">Linen Fragrance sheets</a></li>
+          </ul>
+          <ul class="links-animate">
+            <li><h5 href="#">Follow</h5></li>
+            <li>
+              <a href="#"
+                ><img src="./svg/icons/instagram.svg" alt="Instagram icon" />
+                <p>Instagram</p></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><img src="./svg/icons/facebook.svg" alt="Facebook icon" />
+                <p>Facebook</p></a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <picture class="color-wave__pic">
+        <source media="(min-width: 1440px)" srcset="./images/wave/wave-color-footer-bt-lg.png" />
+        <source media="(min-width: 768px)" srcset="./images/wave/wave-color-footer-bt-lg.png" />
+        <img src="./images/wave/wave-color-footer-bt-sm.png" alt="the good laundry footer" />
+      </picture>
+    </footer>
   </body>
 </html>

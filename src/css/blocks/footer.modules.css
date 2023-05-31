@@ -1,0 +1,108 @@
+.footer {
+  position: relative;
+  background-color: var(--secondary-color);
+  width: 100%;
+}
+
+.wave__pic img {
+  width: 100%;
+}
+
+.color-wave__pic img {
+  width: 100%;
+  margin-bottom: -5px;
+}
+
+.footer-logo__svg {
+  width: 112.2px;
+  height: 80px;
+
+  margin-bottom: 25px;
+}
+
+.footer-wrapper__info {
+  margin-block: 28px 10px;
+}
+
+.footer-wrapper__info h4 {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 400;
+}
+
+.footer-wrapper__info p {
+  font-size: 17px;
+  line-height: 22px;
+  margin-block: 6px 15px;
+}
+
+.footer-form input {
+  width: 345px;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 15px 5px;
+}
+
+.footer-form input::placeholder {
+  font-family: 'Futura PT';
+  text-align: center;
+  font-weight: 450;
+  font-size: 16px;
+  line-height: 21px;
+  color: var(--secondary-bg-color);
+}
+
+.footer-form button {
+  width: 140px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 21px;
+  margin-top: 30px;
+}
+
+.footer-menu {
+  flex-wrap: wrap;
+  padding-block: 35px 39px;
+}
+
+.footer-menu ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1 50%;
+}
+.footer-menu li {
+  padding: 8px 0px;
+}
+.footer-menu h5 {
+  font-size: 18px;
+  line-height: 23px;
+  margin-bottom: 4px;
+}
+.footer-menu ul:nth-last-child(-n + 2) {
+  margin-top: 35px;
+}
+.footer-menu ul:nth-last-child(-n + 1) li:nth-last-child(-n + 2) a {
+  display: flex;
+}
+.footer-menu ul:nth-last-child(-n + 1) li:nth-last-child(-n + 2) img {
+  margin-right: 5.21px;
+}
+
+.footer-menu a {
+  font-size: 17px;
+  line-height: 22px;
+}
+
+@media screen and (min-width: 1240px) {
+
+  .footer-wrapper__info {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+  }
+}
