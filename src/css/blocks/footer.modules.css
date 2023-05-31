@@ -6,6 +6,7 @@
 
 .wave__pic img {
   width: 100%;
+  margin-top: -1px;
 }
 
 .color-wave__pic img {
@@ -98,11 +99,13 @@
 }
 
 @media screen and (min-width: 1240px) {
-
   .footer-wrapper__info {
     position: absolute;
     left: 50%;
     top: 40%;
     transform: translate(-50%, -50%);
+  }
+  .color-wave__pic {
+    max-height: 240px;
   }
 }

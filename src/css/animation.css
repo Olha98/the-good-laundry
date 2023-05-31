@@ -1,4 +1,5 @@
-/* *ANIMATE */
+/* * COMMON ANIMATION CSS FOR ELEMENTS  * */
+
 .links-animate a {
   background-image: linear-gradient(to right, #24514c, #24514c 50%, #000 50%);
   background-size: 200% 100%;

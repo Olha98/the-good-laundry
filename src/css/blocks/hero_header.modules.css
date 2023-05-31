@@ -67,7 +67,6 @@
 
 .hero_header_features {
   margin-block: 40px 47px;
-  /* padding-inline: 40px 47px; */
   width: 100%;
 }
 
@@ -206,7 +205,7 @@
   }
   .hero_header_features {
     position: absolute;
-    bottom: 0%;
+    bottom: 3%;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 933.53px;
