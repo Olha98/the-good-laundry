@@ -1,5 +1,7 @@
 /* * COMMON CSS FOR ELEMENTS  * */
-
+.main {
+  margin: 50px 0px;
+}
 .flex-center {
   display: flex;
   align-items: center;
@@ -80,8 +82,20 @@
   font-size: 17px;
   line-height: 24px;
 }
+@media screen and (min-width: 768px) {
+  .space-mb-100 {
+    margin-bottom: 50px;
+  }
+
+  .heading {
+    width: 60%;
+  }
+}
 
 @media screen and (min-width: 1240px) {
+  .space-mb-100 {
+    margin-bottom: 80px;
+  }
   .container {
     padding: 0px;
   }

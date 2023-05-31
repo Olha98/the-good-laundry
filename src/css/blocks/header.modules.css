@@ -12,13 +12,16 @@
 .color-wave_header__img {
   max-height: 240px;
 }
+
 .header_promo p {
   color: var(--secondary--text-color);
 }
+
 .header__container {
   background: var(--main-bg-color);
   padding: 5px 15px 3px 15px;
 }
+
 .avatar__svg,
 .basket__svg {
   width: 29px;
@@ -44,8 +47,8 @@
   right: -3px;
   top: -15px;
   border-radius: 50%;
-  background-color: #4d8e6d;
-  color: white;
+  background-color: var(--fifth-color);
+  color: var(--secondary--text-color);
 
   font-weight: 400;
   font-size: 10px;
@@ -100,10 +103,12 @@
   background-color: var(--secondary-bg-color);
   transition: all 0.1s linear;
 }
+
 .menu__btn > span::before {
   content: '';
   top: -8px;
 }
+
 .menu__btn > span::after {
   content: '';
   top: 8px;
@@ -134,30 +139,38 @@
   text-decoration: none;
 }
 .menu__item:hover {
-  background-color: #d1efe5;
+  background-color: var(--section-main-bg-color);
 }
 
 #menu__toggle:checked ~ .menu__btn > span {
   transform: rotate(45deg);
 }
+
 #menu__toggle:checked ~ .menu__btn > span::before {
   top: 0;
   transform: rotate(0);
 }
+
 #menu__toggle:checked ~ .menu__btn > span::after {
   top: 0;
   transform: rotate(90deg);
 }
+
 #menu__toggle:checked ~ .menu__box {
   visibility: visible;
   left: 0;
 }
+
 @media screen and (min-width: 413px) {
   .header__menu {
     max-width: 450px;
     width: 100%;
   }
+  .basket__count::after {
+    right: 2px;
+  }
 }
+
 @media screen and (min-width: 768px) {
   .header {
     min-height: 0px;
@@ -183,7 +196,6 @@
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     max-width: 90%;
-
     z-index: 3;
   }
 
@@ -191,12 +203,14 @@
     width: 100%;
     margin: 0 auto;
   }
+
   .header__menu ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
   }
+
   .logo__svg_mob {
     display: none;
   }
@@ -205,22 +219,10 @@
     display: none;
   }
 }
+
 @media screen and (min-width: 1240px) {
   .header__menu {
     max-width: 617px;
-  }
-
-  .basket__count::after {
-    content: '0';
-    width: 20px;
-    height: 20px;
-
-    right: -1px;
-    top: -25px;
-
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 15px;
   }
 }
 
@@ -232,10 +234,24 @@
     padding: 0px 55px 0px 50.02px;
   }
 
+  .basket__count::after {
+    content: '0';
+    width: 20px;
+    height: 20px;
+
+    right: -1px;
+    top: -25px;
+
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+  }
+
   .header__menu a {
     font-size: 20px;
     line-height: 26px;
   }
+
   .logo__svg {
     width: 122.86px;
     height: 80px;

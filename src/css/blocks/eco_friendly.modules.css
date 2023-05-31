@@ -1,5 +1,5 @@
 .eco-friendly__section {
-  margin: 30px 0px;
+  margin: 50px 0px;
 }
 
 .eco-friendly__star {
@@ -7,8 +7,8 @@
 }
 .eco-friendly__star h3 {
   position: relative;
-  padding-inline: 20px;
   max-width: 700px;
+  padding-inline: 20px;
   margin: 0 auto;
 }
 
@@ -136,9 +136,9 @@ nav.carousel_dots label {
   height: 10px;
 }
 nav.carousel_dots label:hover {
-  background: #bbb;
+  background: var(--section-tenth-bg-color);
   cursor: pointer;
-  box-shadow: inset 0 1px 1px 0 #777;
+  box-shadow: inset 0 1px 1px 0 var(--section-nineth-bg-color);
 }
 nav.carousel_dots input:checked + label {
   background: var(--button-main-color);
@@ -146,7 +146,7 @@ nav.carousel_dots input:checked + label {
 }
 .eco-friendly__video {
   position: relative;
-  background: #e1e7c7;
+  background: var(--section-sixth-bg-color);
   padding: 5px;
   border-radius: 10.087px;
 }
@@ -184,15 +184,115 @@ nav.carousel_dots input:checked + label {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: scale(1) translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
-  transition: all 0.3s ease-out;
-  transform-origin: center;
+  transform: translate(-50%, -50%);
 }
-.eco-friendly__video-play:hover {
-  transform: scale(1.1) translate(-50%, -50%);
-  transition: all 0.3s ease-in;
+.eco-friendly_strips {
+  position: relative;
+}
+
+.eco-friendly_strips-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.strips-wave-top_pic {
+  position: absolute;
+  top: -1%;
+  left: 0%;
+  width: 101%;
+}
+.strips-wave-bottom_pic {
+  position: absolute;
+  bottom: -1px;
+  left: 0%;
+  width: 101%;
+}
+.strips_pic img {
+  width: 100%;
+  object-fit: cover;
+  max-height: 420px;
+}
+.strips_info {
+  height: 420px;
+  background-color: var(--section-secondary-bg-color);
+  padding: 94px 15px 105px;
+}
+.strips_info h4 {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 400;
+  text-align: center;
+}
+.strips_info p {
+  font-size: 17px;
+  line-height: 24px;
+  text-align: center;
+  margin-block: 12px 33px;
+}
+.strips_info button {
+  padding: 8px 36px;
+  max-width: 160px;
+}
+.strips_info-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.leaf__svg {
+  width: 29.6px;
+  height: 36px;
+  margin-bottom: 12.39px;
+}
+
+@media screen and (min-width: 768px) {
+  .eco-friendly__video-container {
+    max-width: 600px;
+    height: 330px;
+    border-radius: 15px;
+  }
+  .eco-friendly__video {
+    border-radius: 15px;
+  }
+  .eco-friendly_strips-container {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .strips_info {
+    height: 420px;
+    flex-basis: 50%;
+    align-items: flex-start;
+  }
+  .strips_info-title {
+    align-items: flex-start;
+  }
+
+  .strips_info button {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+    max-width: 220px;
+  }
+
+  .strips_pic {
+    width: 50%;
+  }
+  .strips_pic img {
+    display: flex;
+    flex-basis: 50%;
+    height: 100%;
+    height: 420px;
+    max-height: 420px;
+  }
+  .strips-wave-bottom_pic {
+    bottom: -2%;
+    left: 0%;
+    width: 101%;
+  }
 }
 
 @media screen and (max-width: 980px) {
@@ -205,17 +305,6 @@ nav.carousel_dots input:checked + label {
   }
   .eco-friendly__carousel-item {
     margin-right: 0;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .eco-friendly__video-container {
-    max-width: 600px;
-    height: 330px;
-    border-radius: 15px;
-  }
-  .eco-friendly__video {
-    border-radius: 15px;
   }
 }
 
@@ -270,6 +359,30 @@ nav.carousel_dots input:checked + label {
     width: 85px;
     height: 85px;
   }
+
+  .strips_pic img {
+    height: 700px;
+    max-height: 700px;
+  }
+  .strips_info {
+    height: 700px;
+    flex-basis: 50%;
+  }
+  .strips_info h4 {
+    font-size: 44px;
+    line-height: 52px;
+    text-align: left;
+    width: 300px;
+  }
+  .strips_info p {
+    font-size: 22px;
+    line-height: 32px;
+    text-align: left;
+  }
+
+  .strips_info {
+    padding: 94px 80px 130px 100px;
+  }
 }
 @media screen and (max-width: 1330px) {
   .eco-friendly__carousel-list {
@@ -300,5 +413,11 @@ nav.carousel_dots input:checked + label {
     content: url(../../svg/icons/star_lg.svg);
     top: -20%;
     right: -5%;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  .eco-friendly_strips-container {
+    max-width: 1900px;
   }
 }
