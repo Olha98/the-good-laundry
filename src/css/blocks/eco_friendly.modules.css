@@ -5,6 +5,10 @@
 .eco-friendly__star {
   margin-block: 41.56px 30px;
 }
+.eco-friendly__star p {
+  max-width: 840px;
+}
+
 .eco-friendly__star h3 {
   position: relative;
   max-width: 700px;
@@ -46,6 +50,7 @@
 
 .eco-friendly__base {
   margin-block: 20px 30px;
+  max-width: 60%;
 }
 
 .eco-friendly__base p {
@@ -266,6 +271,10 @@ nav.carousel_dots input:checked + label {
     height: 420px;
     flex-basis: 50%;
     align-items: flex-start;
+    padding: 94px 25px 105px;
+  }
+  .strips_info p {
+    text-align: left;
   }
   .strips_info-title {
     align-items: flex-start;
@@ -329,18 +338,22 @@ nav.carousel_dots input:checked + label {
     line-height: 30px;
     max-width: 100%;
   }
-  .eco-friendly__base {
-    max-width: 481px;
-  }
+
   div.eco-friendly__base p {
     font-weight: 400;
     font-size: 22px;
     line-height: 32px;
   }
+
+  .eco-friendly__text {
+    max-width: 970px;
+  }
+
   p.friendly__text {
     font-weight: 400;
     font-size: 22px;
     line-height: 32px;
+    max-width: 600px;
   }
   .eco-friendly__list {
     max-width: 1216px;

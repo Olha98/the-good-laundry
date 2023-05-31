@@ -38,6 +38,7 @@
   max-width: 223px;
   padding-bottom: 10px;
   margin: 0 auto;
+  color: var(--third--text-color);
 }
 
 .hero_header_info p {
@@ -46,6 +47,7 @@
   font-weight: 400;
   letter-spacing: 0.5px;
   margin: 0 auto;
+  color: var(--third--text-color);
 }
 
 .hero_header_description {
@@ -100,6 +102,7 @@
 
   .hero_header__content {
     margin-top: 100px;
+    color: var(--seventh-color);
   }
 
   .color-wave_header__img {
