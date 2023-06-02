@@ -145,10 +145,12 @@ nav.carousel_dots label:hover {
   cursor: pointer;
   box-shadow: inset 0 1px 1px 0 var(--section-nineth-bg-color);
 }
+
 nav.carousel_dots input:checked + label {
   background: var(--button-main-color);
   border: 1px solid var(--seventh-color);
 }
+
 .eco-friendly__video {
   position: relative;
   background: var(--section-sixth-bg-color);
@@ -217,6 +219,11 @@ nav.carousel_dots input:checked + label {
   object-fit: cover;
   max-height: 420px;
 }
+img.strips-top_svg,
+img.strips-bottom_svg {
+  width: 100%;
+}
+
 .strips_info {
   height: 420px;
   background-color: var(--section-secondary-bg-color);
@@ -426,11 +433,5 @@ nav.carousel_dots input:checked + label {
     content: url(../../svg/icons/star_lg.svg);
     top: -20%;
     right: -5%;
-  }
-}
-
-@media screen and (min-width: 1900px) {
-  .eco-friendly_strips-container {
-    max-width: 1900px;
   }
 }

@@ -24,13 +24,19 @@
 
 .avatar__svg,
 .basket__svg {
-  width: 29px;
-  height: 19px;
-  padding-right: 10px;
+  margin-right: 10px;
+}
+.header__client-info {
+  cursor: pointer;
+}
+.header__client-info path:hover {
+  fill: #24514c;
+  opacity: 0.4;
+  transition: all 0.3s linear;
 }
 
 .search__svg {
-  padding-left: 14.02px;
+  margin-left: 14.02px;
 }
 
 .basket__count {
@@ -155,11 +161,15 @@
   top: 0;
   transform: rotate(90deg);
 }
-
-#menu__toggle:checked ~ .menu__box {
+.visible {
   visibility: visible;
   left: 0;
 }
+
+/* #menu__toggle:checked ~ .menu__box {
+  visibility: visible;
+  left: 0;
+} */
 
 @media screen and (min-width: 413px) {
   .header__menu {
@@ -256,16 +266,5 @@
     width: 122.86px;
     height: 80px;
     margin: 0px 50px;
-  }
-
-  .search__svg {
-    width: 41.98px;
-    height: 41.98px;
-  }
-
-  .avatar__svg,
-  .basket__svg {
-    width: 42px;
-    height: 42px;
   }
 }

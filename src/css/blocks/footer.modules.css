@@ -17,7 +17,6 @@
 .footer-logo__svg {
   width: 112.2px;
   height: 80px;
-
   margin-bottom: 25px;
 }
 
@@ -67,6 +66,9 @@
   flex-wrap: wrap;
   padding-block: 35px 39px;
 }
+.footer-menu svg {
+  margin-right: 5px;
+}
 
 .footer-menu ul {
   display: flex;
@@ -98,13 +100,76 @@
   line-height: 22px;
 }
 
+.footer-nav__firstBlock {
+  display: flex;
+  order: 2;
+}
+
+.footer-nav__secondBlock {
+  display: flex;
+  flex-direction: column;
+  order: 1;
+}
+
+.footer-nav__thirdBlock {
+  display: flex;
+  flex-direction: column;
+  order: 3;
+}
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.footer-nav__firstBlock {
+  order: 1;
+  width: 100%;
+}
+.footer-nav__secondBlock {
+  order: 2;
+  width: 50%;
+}
+
+.footer-nav__thirdBlock {
+  width: 50%;
+}
+
+.footer-wrapper__info {
+  display: flex;
+  order: 2;
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
 @media screen and (min-width: 1240px) {
-  .footer-wrapper__info {
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    transform: translate(-50%, -50%);
+  .footer-nav__firstBlock {
+    order: 2;
+    width: 30%;
   }
+  .footer-nav__secondBlock {
+    order: 1;
+    width: 30%;
+  }
+
+  .footer-nav__thirdBlock {
+    order: 3;
+    width: 30%;
+  }
+
+  .footer-wrapper__info {
+    display: flex;
+    order: 2;
+  }
+  .footer-container {
+    display: flex;
+    height: 100%;
+  }
+
   .color-wave__pic {
     max-height: 240px;
   }
