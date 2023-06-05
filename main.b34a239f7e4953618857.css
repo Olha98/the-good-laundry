@@ -329,7 +329,7 @@ a {
 
 }
 button{
-      border: none;
+    border: none;
     margin: 0;
     padding: 0;
     width: auto;
@@ -350,6 +350,7 @@ button{
 /* * COMMON ANIMATION CSS FOR ELEMENTS  * */
 
 .links-animate a {
+  display: none;
   background-image: linear-gradient(to right, #24514c, #24514c 50%, var(--seventh-color) 50%);
   background-size: 200% 100%;
   background-position: -100%;
@@ -360,6 +361,7 @@ button{
   -webkit-text-fill-color: transparent;
   transition: all 0.3s ease-in-out;
 }
+
 
 .links-animate a:before {
   content: '';
@@ -436,8 +438,7 @@ button{
 
 @media screen and (max-width: 756px) {
   .search-box {
-    position: absolute;
-    left: 50px;
+    position: relative;
   }
 
   .btn-search:focus ~ .input-search {
@@ -664,7 +665,20 @@ button{
 }
 
 /* * MENU BURGER *  */
+.hamburger-menu__overlay {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20%);
+  z-index: 2;
+  opacity: 0;
 
+  transition: all 0.6s linear;
+}
 .hamburger-menu {
   display: flex;
 }
@@ -750,10 +764,7 @@ button{
   left: 0;
 }
 
-/* #menu__toggle:checked ~ .menu__box {
-  visibility: visible;
-  left: 0;
-} */
+
 
 @media screen and (min-width: 413px) {
   .header__menu {
@@ -1797,17 +1808,6 @@ button:hover {
   cursor: pointer;
 }
 
-a,
-button:focus {
-  outline: none;
-}
-
-input:focus,
-input:active,
-button:active,
-button:focus {
-  outline: none;
-}
 
 .visually-hidden:not(:focus):not(:active),
 input[type='checkbox'].visually-hidden,
