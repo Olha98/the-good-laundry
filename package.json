@@ -5,7 +5,9 @@
   "main": "index.html",
   "scripts": {
     "dev": "webpack-dev-server --mode=development --config ./webpack.config.js",
-    "build": "webpack --mode=development --config ./webpack.config.js"
+    "build": "webpack --mode=development --config ./webpack.config.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "bugs": {
     "url": "https://github.com/Olha98/the-good-laundry/issues"

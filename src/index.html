@@ -5,33 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link href="./css/main.css" rel="stylesheet" type="text/css" defer />
+    <link href="./css/main.css" rel="stylesheet" type="text/css" />
     <base href="./" />
     <title>The good laundry</title>
     <script type="application/ld+json" defer>
-      {
-        "@context": "https://schema.org/",
-        "@type": "WebSite",
-        "name": "The good laundry",
-        <!-- need change URL after webpack build url -->
-        "url": "http://127.0.0.1:5500/src/index.html#",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "{search_term_string}",
-          "query-input": "required name=search_term_string"
+      [
+        {
+          "@context": "https://schema.org/",
+          "@type": "WebSite",
+          "name": "The good laundry",
+          "url": "≈",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://olha98.github.io/the-good-laundry/{search_term_string}strips, shopping, free",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Corporation",
+          "name": "The good laundry",
+          "alternateName": "Goodlaundry",
+          "url": "https://olha98.github.io/the-good-laundry/",
+          "logo": "https://cdn6.aptoide.com/imgs/5/d/1/5d187923c2f94bf506bc9444ddf02516_icon.png",
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+4403084430493940",
+              "contactType": "customer service",
+              "contactOption": "TollFree",
+              "areaServed": ["AL", "AG", "AR", "AZ"],
+              "availableLanguage": "en"
+            },
+            {
+              "@type": "ContactPoint",
+              "telephone": "+475845353565",
+              "contactType": "sales",
+              "contactOption": "HearingImpairedSupported",
+              "areaServed": "US",
+              "availableLanguage": "es"
+            }
+          ]
         }
-      }
+      ]
     </script>
   </head>
   <body>
     <script type="text/javascript" src="./index.js" defer type="module"></script>
     <!-- START HEADER SECTION -->
+    <div class="hamburger-menu__overlay"></div>
     <header class="header">
       <div class="header_promo flex-center"><p>FREE SHIPPING | 100% Money Back Guarantee</p></div>
       <div class="header__container flex-between-center">
-        <div class="hamburger-menu">
-          <input id="menu__toggle" type="checkbox" />
-          <label class="menu__btn" for="menu__toggle">
+        <div class="hamburger-menu" data-name="disabled">
+          <input id="menu__toggle" type="checkbox" tabindex="0" />
+          <label class="menu__btn" for="menu__toggle" tabindex="0">
             <span></span>
           </label>
           <ul class="menu__box">
@@ -41,8 +69,7 @@
             <li><a class="menu__item" href="#" title="Blog page">Blog</a></li>
           </ul>
         </div>
-
-        <div class="search-box">
+        <div class="search-box" tabindex="0">
           <button class="btn-search">
             <i class="fas fa-search">
               <svg class="search__svg" width="18" height="18" fill="none">
@@ -54,17 +81,33 @@
               </svg>
             </i>
           </button>
-          <input type="text" class="input-search" placeholder="Type to Search..." />
+          <input type="text" class="input-search" placeholder="Type to Search..." tabindex="0" />
         </div>
 
         <div class="header__menu">
-          <img src="svg/icons/logo.svg" role="img" alt="Logo" class="logo__svg_mob" width="77" height="50" />
+          <img
+            src="svg/icons/logo.svg"
+            role="img"
+            alt="Logo"
+            class="logo__svg_mob"
+            width="77"
+            height="50"
+            tabindex="0"
+          />
           <nav>
             <ul class="links-animate">
               <li><a href="/" title="Home page">Home</a></li>
               <li><a href="#" title="Shop page">Shop</a></li>
               <li>
-                <img src="svg/icons/logo.svg" role="img" alt="Logo" class="logo__svg" width="77" height="50" />
+                <img
+                  src="svg/icons/logo.svg"
+                  role="img"
+                  alt="Logo"
+                  class="logo__svg"
+                  width="77"
+                  height="50"
+                  tabindex="0"
+                />
               </li>
               <li><a href="#" title="About us page">About us</a></li>
               <li><a href="#" title="Blog page">Blog</a></li>
@@ -372,7 +415,12 @@
         </div>
         <div class="eco-friendly__video container space-mb-100">
           <div class="eco-friendly__video-container">
-            <video poster="images/eco-friendly/_converterWEBP/poster-video.webp" height="530" muted="true" preload="true">
+            <video
+              poster="images/eco-friendly/_converterWEBP/poster-video.webp"
+              height="530"
+              muted="true"
+              preload="true"
+            >
               <!-- <source src="movie.mp4" type="video/mp4" />
               <source src="movie.ogg" type="video/ogg" /> -->
               Your browser does not support the video tag.

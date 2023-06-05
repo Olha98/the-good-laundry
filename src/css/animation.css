@@ -1,6 +1,7 @@
 /* * COMMON ANIMATION CSS FOR ELEMENTS  * */
 
 .links-animate a {
+  display: none;
   background-image: linear-gradient(to right, #24514c, #24514c 50%, var(--seventh-color) 50%);
   background-size: 200% 100%;
   background-position: -100%;
@@ -11,6 +12,7 @@
   -webkit-text-fill-color: transparent;
   transition: all 0.3s ease-in-out;
 }
+
 
 .links-animate a:before {
   content: '';
@@ -87,8 +89,7 @@
 
 @media screen and (max-width: 756px) {
   .search-box {
-    position: absolute;
-    left: 50px;
+    position: relative;
   }
 
   .btn-search:focus ~ .input-search {
