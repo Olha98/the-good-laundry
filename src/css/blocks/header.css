@@ -12,6 +12,9 @@
 .color-wave_header__img {
   max-height: 240px;
 }
+.wave_header_img {
+  width: 100%;
+}
 
 .header_promo p {
   color: var(--secondary--text-color);

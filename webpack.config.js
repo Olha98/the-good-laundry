@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const webpack = require('webpack');
 const path = require('path');
-const paths = require('./webpack/utils/paths');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -13,41 +13,39 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     filename: '[name].js',
   },
-
+  optimization: {
+    moduleIds: 'deterministic',
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
-      },
-
-      {
-        test: /\.(gif|png|jpe?g|svg)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              name: '[path][name].[ext]',
-              limit: 8192,
-              esModule: false,
-            },
-          },
-          'img-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
       {
-        test: /\.woff(2)?(\?[a-z0-9#=&.]+)?$/,
+        test: /\.(jpg|jpeg|png|gif|pdf|ico)$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: 'file-loader',
             options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/',
-              limit: 10000,
-              mimetype: 'application/font-woff',
+              name: 'images/[name].[ext]',
             },
           },
         ],
+      },
+      {
+        test: /\.(woff|woff2)$/i,
+        type: 'asset/resource',
       },
       {
         test: /\.html$/,
@@ -68,9 +66,19 @@ module.exports = {
       },
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
       chunkFilename: '[name].[id].[contenthash].css',
     }),
+    new CleanWebpackPlugin(),
   ],
+  stats: { children: true },
+  devServer: {
+    static: path.resolve(__dirname, './dist'),
+    compress: true,
+    port: 8080,
+    open: true,
+    hot: true,
+  },
 };

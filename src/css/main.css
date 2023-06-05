@@ -5,13 +5,17 @@
 @import './animation.css';
 @import './common.css';
 
-@import './blocks/header.modules.css';
-@import './blocks/hero_header.modules.css';
-@import './blocks/eco_friendly.modules.css';
-@import './blocks/footer.modules.css';
+@import './blocks/header.css';
+@import './blocks/hero_header.css';
+@import './blocks/eco_friendly.css';
+@import './blocks/footer.css';
 
 html {
   box-sizing: border-box;
+}
+html,
+body {
+  font-family: 'Futura PT' !important;
 }
 
 *,
