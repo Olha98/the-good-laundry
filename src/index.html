@@ -14,7 +14,7 @@
           "@context": "https://schema.org/",
           "@type": "WebSite",
           "name": "The good laundry",
-          "url": "≈",
+          "url": "https://olha98.github.io/the-good-laundry/",
           "potentialAction": {
             "@type": "SearchAction",
             "target": "https://olha98.github.io/the-good-laundry/{search_term_string}strips, shopping, free",
@@ -50,116 +50,35 @@
         {
           "@context": "https://schema.org/",
           "@type": "Product",
-          "image": "http://www.example.com/iphone-case.jpg",
-          "name": "The Catcher in the Rye",
+          "image": "https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books_23-2149342941.jpg?w=2000",
+          "name": "Book",
           "review": {
             "@type": "Review",
             "reviewRating": {
               "@type": "Rating",
               "ratingValue": "4"
             },
-            "name": "iPhone 6 Case Plus",
+            "name": "Tips by the good laundry",
             "author": {
               "@type": "Person",
               "name": "Linus Torvalds"
             },
-            "datePublished": "2016-04-04",
+            "datePublished": "2022-04-04",
             "reviewBody": "I loved this case, it is strurdy and lightweight. Only issue is that it smudges.",
             "publisher": {
               "@type": "Organization",
-              "name": "iPhone 6 Cases Inc."
+              "name": "The good laundry"
             }
           }
         },
         {
           "@context": "http://schema.org",
-          "@type": "Restaurant",
-          "url": "http://www.thisisarestaurant.com",
-          "name": "The Restaurant",
-          "image": "http://www.example.com/image-of-some-restaurant.jpg",
-          "telephone": "5615551212",
-          "priceRange": "$100 - $200",
-          "description": "a description of this business",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "STREET ADDRESS",
-            "addressLocality": "CITY",
-            "addressRegion": "STATE ABBREVIATION",
-            "postalCode": "ZIP CODE"
-          },
-          "servesCuisine": ["American cuisine"],
-          "hasMenu": {
-            "@type": "Menu",
-            "name": "Dine-In Menu",
-            "description": "Menu for in-restaurant dining only.",
-            "hasMenuSection": [
-              {
-                "@type": "MenuSection",
-                "name": "Dinner",
-                "description": "Dinner dishes",
-                "image": "https://thisisarestaurant.com/dinner_dishes.jpg",
-                "offers": {
-                  "@type": "Offer",
-                  "availabilityEnds": "T8:22:00",
-                  "availabilityStarts": "T8:22:00"
-                },
-                "hasMenuSection": [
-                  {
-                    "@type": "MenuSection",
-                    "name": "Starters",
-                    "description": "Appetizers and such",
-                    "image": "https://thisisarestaurant.com/starter_dishes.jpg",
-                    "offers": {
-                      "@type": "Offer",
-                      "availabilityEnds": "T8:22:00",
-                      "availabilityStarts": "T8:22:00"
-                    },
-                    "hasMenuItem": {
-                      "@type": "MenuItem",
-                      "name": "Potato Skins",
-                      "description": "Small serving of stuffed potato skins.",
-                      "offers": {
-                        "@type": "Offer",
-                        "price": "7.49",
-                        "priceCurrency": "USD"
-                      },
-                      "suitableForDiet": "http://schema.org/GlutenFreeDiet"
-                    }
-                  },
-                  {
-                    "@type": "MenuSection",
-                    "name": "Soups & Salads",
-                    "description": "Salads and a few choices of soup",
-                    "image": "https://thisisarestaurant.com/soup_and_salad_dishes.jpg",
-                    "offers": {
-                      "@type": "Offer",
-                      "availabilityEnds": "T8:22:00",
-                      "availabilityStarts": "T8:22:00"
-                    },
-                    "hasMenuItem": {
-                      "@type": "MenuItem",
-                      "name": "Pea Soup",
-                      "description": "Creamy pea soup topped with melted cheese and sourdough croutons.",
-                      "offers": {
-                        "@type": "Offer",
-                        "price": "3.49",
-                        "priceCurrency": "USD"
-                      }
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "@context": "http://schema.org",
           "@type": "WebPage",
-          "name": "About Patrick",
-          "description": "In addition to Patrick's work in the SEO field, he also enjoys classical jazz dancing and organic farming ",
+          "name": "Blog",
+          "description": "Welcome to our blog, a vibrant space where ideas come to life. Join us as we explore a wide range of topics, from the latest technology trends to thought-provoking discussions on social issues.",
           "publisher": {
-            "@type": "ProfilePage",
-            "name": "Patrick's Website"
+            "@type": "Organization",
+            "name": "The good laundry"
           }
         }
       ]
@@ -177,11 +96,12 @@
           <label class="menu__btn" for="menu__toggle" tabindex="0">
             <span></span>
           </label>
-          <ul class="menu__box">
-            <li><a class="menu__item" href="#" title="Home page">Home</a></li>
-            <li><a class="menu__item" href="#" title="Shop page">Shop</a></li>
-            <li><a class="menu__item" href="#" title="About us page">About us</a></li>
-            <li><a class="menu__item" href="#" title="Blog page">Blog</a></li>
+          <ul class="menu__box" itemscope itemtype="https://schema.org/SiteNavigationElement">
+            <meta itemprop="name" content="Main Menu" />
+            <li><a itemprop="url" class="menu__item" href="#" title="Home page" role="menuitem">Home</a></li>
+            <li><a itemprop="url" class="menu__item" href="#" title="Shop page" role="menuitem">Shop</a></li>
+            <li><a itemprop="url" class="menu__item" href="#" title="About us page" role="menuitem">About us</a></li>
+            <li><a itemprop="url" class="menu__item" href="#" title="Blog page" role="menuitem">Blog</a></li>
           </ul>
         </div>
         <div class="search-box" tabindex="0">
@@ -209,10 +129,11 @@
             height="50"
             tabindex="0"
           />
-          <nav>
+          <nav itemscope itemtype="http://www.schema.org/SiteNavigationElement">
             <ul class="links-animate">
-              <li><a href="/" title="Home page">Home</a></li>
-              <li><a href="#" title="Shop page">Shop</a></li>
+              <meta itemprop="name" content="Main Menu" />
+              <li><a itemprop="url" href="/" title="Home page" role="menuitem">Home</a></li>
+              <li><a itemprop="url" href="#" title="Shop page" role="menuitem">Shop</a></li>
               <li>
                 <img
                   src="svg/icons/logo.svg"
@@ -222,16 +143,18 @@
                   width="77"
                   height="50"
                   tabindex="0"
+                  role="menuitem"
+                  itemprop="url"
                 />
               </li>
-              <li><a href="#" title="About us page">About us</a></li>
-              <li><a href="#" title="Blog page">Blog</a></li>
+              <li><a role="menuitem" itemprop="url" href="#" title="About us page">About us</a></li>
+              <li><a role="menuitem" itemprop="url" href="#" title="Blog page">Blog</a></li>
             </ul>
           </nav>
         </div>
 
         <div class="header__client-info flex-center">
-          <a href="Avatar" title="Avatar">
+          <a role="menuitem" itemprop="url" href="#" title="Avatar">
             <svg class="avatar__svg" width="19" height="19" fill="none">
               <path
                 fill="currentColor"
@@ -239,7 +162,7 @@
               />
             </svg>
           </a>
-          <a href="#" title="Basket">
+          <a role="menuitem" itemprop="url" href="#" title="Basket">
             <svg class="basket__svg" width="19" height="19" fill="none">
               <path
                 fill="currentColor"
