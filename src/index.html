@@ -86,6 +86,7 @@
   </head>
   <body>
     <script src="./index.js" defer type="module"></script>
+    <script src="./js/AdaptiveMenu/index.js" defer></script>
     <!-- START HEADER SECTION -->
     <div class="hamburger-menu__overlay"></div>
     <header class="header">
@@ -131,28 +132,19 @@
             height="50"
             tabindex="0"
           />
-          <nav itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-            <ul class="links-animate">
-              <meta itemprop="name" content="Main Menu for Desktop" />
-              <li><a itemprop="url" href="#" title="Home page" role="menuitem">Home</a></li>
-              <li><a itemprop="url" href="#" title="Shop page" role="menuitem">Shop</a></li>
-              <li>
-                <img
-                  src="svg/icons/logo.svg"
-                  role="img"
-                  alt="Logo"
-                  class="logo__svg"
-                  width="77"
-                  height="50"
-                  tabindex="0"
-                  role="menuitem"
-                  itemprop="url"
-                />
-              </li>
-              <li><a role="menuitem" itemprop="url" href="#" title="About us page">About us</a></li>
-              <li><a role="menuitem" itemprop="url" href="#" title="Blog page">Blog</a></li>
-            </ul>
-          </nav>
+
+          <adaptive-menu logo="svg/icons/logo.svg" label="more" class="adaptive-menu">
+            <nav itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+              <ul class="links-animate">
+                <meta itemprop="name" content="Main Menu for Desktop" />
+                <li><a itemprop="url" href="#" title="Home page" role="menuitem">Home</a></li>
+                <li><a itemprop="url" href="#" title="Shop page" role="menuitem">Shop</a></li>
+
+                <li><a role="menuitem" itemprop="url" href="#" title="About us page">About us</a></li>
+                <li><a role="menuitem" itemprop="url" href="#" title="Blog page">Blog</a></li>
+              </ul>
+            </nav>
+          </adaptive-menu>
         </div>
 
         <div class="header__client-info flex-center">

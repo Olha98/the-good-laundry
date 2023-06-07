@@ -47,6 +47,9 @@
   align-items: center;
   position: relative;
 }
+.adaptive-menu {
+  width: 100%;
+}
 
 .basket__count::after {
   content: '0';
@@ -181,8 +184,6 @@
   visibility: visible;
   left: 0;
 }
-
-
 
 @media screen and (min-width: 413px) {
   .header__menu {
