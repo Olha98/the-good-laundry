@@ -49,8 +49,6 @@ class AdaptiveMenu extends HTMLElement {
     p.innerHTML = labelActiveDropDown;
 
     const span = document.createElement('span');
-    // &#9660; треугольник вниз
-    // &#9650; треугольник вверх
     span.innerHTML = '&#9660;';
 
     // console.log(span.textContent === '&#9650;');
@@ -61,30 +59,32 @@ class AdaptiveMenu extends HTMLElement {
     menuChild.forEach(item => (widthItems += item.offsetWidth));
     const spaceBetweenItems = (widthList - widthItems) / menuChild.length;
     console.log(spaceBetweenItems, 'spaceBetweenItems');
-    if (spaceBetweenItems < this.gap) {
-      this.uls[0].append(li);
-      widthItems += li.offsetWidth;
+    // if (spaceBetweenItems < this.gap) {
+    this.uls[0].append(li);
+    widthItems += li.offsetWidth;
 
-      let checkSpace = 0;
-      console.log(checkSpace, 'checkSpace');
-      menuChild.reverse().map((item, index) => {
-        widthItems -= item.offsetWidth;
-        const newSlice = menuChild.slice(0, -index).length;
+    let checkSpace = 0;
 
-        checkSpace = newSlice && (widthList - widthItems) / newSlice;
+    menuChild.reverse().map((item, index) => {
+      widthItems -= item.offsetWidth;
+      const newSlice = menuChild.slice(0, -index).length;
 
-        if (parseInt(checkSpace.toFixed()) >= this.gap) {
-          menuList.push(item);
-        } else {
-          dropDownList.push(item);
-        }
-      });
-      this.uls[0].remove();
-      // this.uls[0].append(li)
-      console.log(this.uls[0].children);
-      console.log(menuList);
-      // this.uls[0].replaceChild(this.uls[0].children[9], this.uls[0].children);
-    }
+      checkSpace = newSlice && (widthList - widthItems) / newSlice;
+
+      if (parseInt(checkSpace.toFixed()) >= this.gap) {
+        menuList.push(item);
+      } else {
+        this.uls[0].removeChild(item);
+        dropDownList.push(item);
+      }
+    });
+
+    // menuChild.map(item => item.removeChild(item));
+    // console.log(this.uls[0].children);
+    console.log(menuChild), 'menuChild';
+
+    // this.uls[0].childNodes = [];
+    // }
   }
 
   putLogo() {
@@ -145,7 +145,7 @@ class AdaptiveMenu extends HTMLElement {
     return {
       container: div,
       // show: () => (div.style.display = null),
-      show: () => (div.style.display = 'none'),
+      show: () => (div.style.display = 'null'),
       hide,
       append: isHide => {
         if (isHide) {
@@ -164,11 +164,12 @@ class AdaptiveMenu extends HTMLElement {
 
     console.log(dropDownList, 'activeDropDown');
 
-    if (dropDownList.length > 0) {
+    // if (dropDownList.length > 0 && activeDropDown) {
       this.dropDown.show();
-
       this.dropDown.setContent(dropDownList);
-    }
+    // }
+
+    
     // if (activeDropDown) {
     //   console.log('should add');
     //   div.style.display = 'block';
