@@ -59,30 +59,31 @@ class AdaptiveMenu extends HTMLElement {
     menuChild.forEach(item => (widthItems += item.offsetWidth));
     const spaceBetweenItems = (widthList - widthItems) / menuChild.length;
     console.log(spaceBetweenItems, 'spaceBetweenItems');
-    // if (spaceBetweenItems < this.gap) {
-    this.uls[0].append(li);
-    widthItems += li.offsetWidth;
 
-    let checkSpace = 0;
+    if (spaceBetweenItems <= this.gap) {
+      this.uls[0].append(li);
+      widthItems += li.offsetWidth;
 
-    menuChild.reverse().map((item, index) => {
-      widthItems -= item.offsetWidth;
-      const newSlice = menuChild.slice(0, -index).length;
+      let checkSpace = 0;
 
-      checkSpace = newSlice && (widthList - widthItems) / newSlice;
+      menuChild.reverse().map((item, index) => {
+        widthItems -= item.offsetWidth;
+        const newSlice = menuChild.slice(0, -index).length;
 
-      if (parseInt(checkSpace.toFixed()) >= this.gap) {
-        menuList.push(item);
-      } else {
-        this.uls[0].removeChild(item);
-        dropDownList.push(item);
-      }
-    });
+        checkSpace = newSlice && (widthList - widthItems) / newSlice;
 
-    // menuChild.map(item => item.removeChild(item));
-    // console.log(this.uls[0].children);
-    console.log(menuChild), 'menuChild';
+        if (parseInt(checkSpace.toFixed()) >= this.gap) {
+          menuList.push(item);
+        } else {
+          this.uls[0].removeChild(item);
+          dropDownList.push(item);
+        }
+      });
 
+      // menuChild.map(item => item.removeChild(item));
+      // console.log(this.uls[0].children);
+      console.log(menuChild), 'menuChild';
+    }
     // this.uls[0].childNodes = [];
     // }
   }
@@ -145,7 +146,6 @@ class AdaptiveMenu extends HTMLElement {
     return {
       container: div,
       show: () => (div.style.display = 'block'),
-      // init: () => (div.style.display = 'block'),
       hide,
       append: isHide => {
         if (isHide) {
@@ -158,11 +158,9 @@ class AdaptiveMenu extends HTMLElement {
     };
   }
 
-  openDropDown() {
+  toggleDropDown() {
     const { dropDownList, activeDropDown } = this.state;
     this.state.activeDropDown = !activeDropDown;
-
-    console.log(dropDownList, 'activeDropDown');
 
     this.dropDown.setContent(dropDownList);
 
@@ -171,7 +169,6 @@ class AdaptiveMenu extends HTMLElement {
     } else {
       this.dropDown.hide();
     }
-
   }
 
   bindEvents() {
@@ -180,7 +177,7 @@ class AdaptiveMenu extends HTMLElement {
     // as the widths are calculated, we need to resize
     // the carousel when the window is resized
     window.addEventListener('resize', () => console.log(window.innerWidth));
-    labelElement.addEventListener('click', this.openDropDown.bind(this));
+    labelElement.addEventListener('click', this.toggleDropDown.bind(this));
   }
 
   updateSizes(e) {
