@@ -144,8 +144,8 @@ class AdaptiveMenu extends HTMLElement {
 
     return {
       container: div,
-      // show: () => (div.style.display = null),
-      show: () => (div.style.display = 'null'),
+      show: () => (div.style.display = 'block'),
+      // init: () => (div.style.display = 'block'),
       hide,
       append: isHide => {
         if (isHide) {
@@ -164,19 +164,14 @@ class AdaptiveMenu extends HTMLElement {
 
     console.log(dropDownList, 'activeDropDown');
 
-    // if (dropDownList.length > 0 && activeDropDown) {
-      this.dropDown.show();
-      this.dropDown.setContent(dropDownList);
-    // }
+    this.dropDown.setContent(dropDownList);
 
-    
-    // if (activeDropDown) {
-    //   console.log('should add');
-    //   div.style.display = 'block';
-    // } else {
-    //   console.log('should remove');
-    //   div.style.display = 'none';
-    // }
+    if (activeDropDown) {
+      this.dropDown.show();
+    } else {
+      this.dropDown.hide();
+    }
+
   }
 
   bindEvents() {
