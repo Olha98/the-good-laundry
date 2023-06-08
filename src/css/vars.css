@@ -10,6 +10,7 @@
 
   --main--text-color: #141c1b;
   --secondary--text-color: #ffffff;
+  --third--text-color: #112D2A;
 
   --main-bg-color: #ffffff;
   --secondary-bg-color: #112d2a;
@@ -18,9 +19,10 @@
   --section-third-bg-color: #f4f1ea;
   --section-forth-bg-color: #f8bb71;
   --section-sixth-bg-color: #e1e7c7;
+  --section-nineth-bg-color: #777;
+  --section-tenth-bg-color: #777;
 
   --button-main-color: #f8bb71;
-
 
   --border-radius-base: 20px;
   --container-width-lg: 1440px;
