@@ -19,14 +19,15 @@
 .header_promo p {
   color: var(--secondary--text-color);
 }
-
+.adaptive-menu {
+  position: relative;
+}
 .drop-down_container {
-  width: 617px;
-  /* width: 90; */
   height: 150px;
   background: white;
   position: absolute;
   top: 90px;
+  right: 28%;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   padding: 10px 5px 20px 20px;
@@ -45,7 +46,6 @@
 }
 
 .drop-down_list li {
-  /* padding: 10px 0px; */
   border-bottom: 1px #e7e7e7 solid;
   width: 100%;
   /* animation: ; */
@@ -226,10 +226,6 @@
 }
 
 @media screen and (min-width: 413px) {
-  .header__menu {
-    /* max-width: 450px; */
-    /* width: 100%; */
-  }
   .basket__count::after {
     right: 2px;
   }
@@ -320,6 +316,6 @@
   .logo__svg {
     width: 122.86px;
     height: 80px;
-    margin: 0px 50px;
+    margin: 0px 30px;
   }
 }

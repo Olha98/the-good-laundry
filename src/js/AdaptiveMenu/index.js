@@ -1,5 +1,5 @@
 //!  - important control container, item container, different style, and add more words
-
+//! transfer component to class
 class DropDown {
   constructor(container) {
     this.container = container;
@@ -59,10 +59,12 @@ class AdaptiveMenu extends HTMLElement {
     this.lis = Array.from(this.querySelectorAll('li'));
 
     this.state = { ...AdaptiveMenu.initState };
+    this.size = this.offsetWidth;
 
     // this.controlContainerSize();
 
     // this.openDropDown();
+    this.stylesheet();
     this.controlContainerSize(this.offsetWidth);
     this.putLogo();
     this.dropDown = this.initDropDown();
@@ -77,13 +79,29 @@ class AdaptiveMenu extends HTMLElement {
     this.bindEvents();
   }
 
+  stylesheet() {
+    this.uls[0].style.gap = `${this.gap}px`;
+  }
+
   controlContainerSize(width) {
-    console.log(width, 'width');
+    // let moveToLarge;
+    // let moveToSmall;
+    // if (width >= this.size) {
+    //   moveToLarge = true;
+    //   moveToSmall = false;
+    //   // console.log('to large');
+    // } else {
+    //   moveToSmall = true;
+    //   moveToLarge = false;
+    //   // console.log('to small');
+    // }
+    // console.log(moveToLarge, 'moveToLarge');
+    // console.log(moveToSmall, 'moveToSmall');
+
     const { dropDownList, menuList } = this.state;
-    // const widthList = this.offsetWidth;
     const widthList = width;
-    let menuChild = Array.from(this.uls[0].children);
     let widthItems = 0; // common width all items
+    let menuChild = Array.from(this.uls[0].children);
 
     //create label for dropDown
     const li = document.createElement('li');
@@ -98,15 +116,18 @@ class AdaptiveMenu extends HTMLElement {
 
     p.append(span);
     li.append(p);
+
     //controlling space
     menuChild.forEach(item => (widthItems += item.offsetWidth));
     const spaceBetweenItems = (widthList - widthItems) / menuChild.length;
 
-    // console.log(spaceBetweenItems, 'spaceBetweenItems');
+    //* start logic
+
 
     if (spaceBetweenItems <= this.gap) {
       console.log('NO SPACE');
-      // console.log(this.uls[0].children, '(this.uls[0].children');
+        console.log(spaceBetweenItems, 'spaceBetweenItems');
+      // console.log(spaceBetweenItems, 'spaceBetweenItems');
 
       this.uls[0].append(li);
       widthItems += li.offsetWidth;
@@ -118,46 +139,37 @@ class AdaptiveMenu extends HTMLElement {
 
         const newSlice = menuChild.slice(0, -index).length;
 
-        console.log(checkSpace, 'checkSpace');
-
         if (parseInt(checkSpace.toFixed()) <= Number(this.gap)) {
+          this.uls[0].removeChild(item);
           checkSpace = newSlice && (widthList - widthItems) / newSlice;
 
-          this.uls[0].removeChild(item);
-          dropDownList.push(item);
+          !item.classList.contains('dropDown_label') && dropDownList.push(item);
         } else {
           menuList.push(item);
         }
       });
     } else {
       let widthDynamic = 0;
-      const spaceBetweenItems = (widthList - widthDynamic) / menuList.length;
-
-      console.log(spaceBetweenItems, 'spaceBetweenItems');
-      console.log(menuList, 'menuList');
-
+      console.log('HELLLO@');
+        console.log(spaceBetweenItems, 'spaceBetweenItems2');
       if (spaceBetweenItems >= this.gap) {
-        dropDownList.map(item => {
-          // widthDynamic += item.offsetWidth;
-          this.uls[0].append(item);
-          console.log('OOOOOO');
+        const lastChild = this.uls[0].lastChild;
+        // lastChild.previousElementSibling.after(dropDownList[dropDownList.length - 1]);
+
+        // this.uls[0].append(dropDownList[dropDownList.length - 1]);
+        console.log(dropDownList.length, 'dropDownList');
+
+        dropDownList.reverse().map(item => {
+          // widthItems += item.offsetWidth;
+          // this.uls[0].append(item);
+          // menuList.push(item);
+          // console.log(item.textCont);
+          // widthItems += item.offsetWidth;
+          // this.uls[0].append(item);
           // menuList.push(item);
         });
       }
-
-      if (dropDownList.length === 0) {
-        const label = document.querySelector('.dropDown_label');
-        label && label.remove();
-      }
-
-      // item.style.display = 'inline-block';
-      // this.uls[0].removeChild();
-      // li.style.background = 'none';
-      // li.remove();
-      // p.remove();
-      // console.log(saveNav, 'saveNav');
-      // console.log('aalalqlalqllq');
-      // console.log(this.uls[0].children, 'HERE!');
+      console.log(menuChild.length, 'menuChild');
     }
 
     // let commonWidth = 0;
@@ -202,16 +214,17 @@ class AdaptiveMenu extends HTMLElement {
     li.appendChild(img);
 
     // find middle position and  put in center of list
-    console.log(menuList, 'menuList');
+    // console.log(menuList, 'menuList');
+
     const length = menuList.length > 0 ? menuList.length : this.lis.length;
 
     const centerElement = Math.floor(length / 2);
 
-    if (menuList.length > 0) {
-      this.uls[0].children[centerElement - 1].after(li);
-    } else {
-      this.uls[0].children[centerElement].before(li);
-    }
+    // if (menuList.length > 0) {
+    //   this.uls[0].children[centerElement - 1].after(li);
+    // } else {
+    //   this.uls[0].children[centerElement].before(li);
+    // }
   }
 
   initDropDown() {
@@ -259,16 +272,23 @@ class AdaptiveMenu extends HTMLElement {
 
   bindEvents() {
     const labelElement = this.querySelector('.dropDown_label');
-    // console.log(header__container, 'header__container');
-    // as the widths are calculated, we need to resize
-    // the carousel when the window is resized
-    //  const widthList = this.offsetWidth;
-    window.addEventListener('resize', e => {
-      const width = this.offsetWidth;
-      this.controlContainerSize(width);
+    let size = this.offsetWidth;
+
+    let resizeId;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeId);
+
+      resizeId = setTimeout(() => {
+        const dinamicWidth = this.offsetWidth;
+
+        this.controlContainerSize(dinamicWidth);
+      }, 50);
     });
-    // window.addEventListener('resize', () => this.updateSizes.bind(this));
+
     labelElement?.addEventListener('click', () => this.toggleDropDown());
+    // document.addEventListener('DOMContentLoaded', () => {
+    //   ItcSlider.getOrCreateInstance('.slider');
+    // });
   }
 }
 
