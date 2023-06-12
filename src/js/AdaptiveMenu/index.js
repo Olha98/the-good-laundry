@@ -169,7 +169,7 @@ class AdaptiveMenu extends HTMLElement {
       this.dropDown.setContent(dropDownList);
     // }
 
-    
+     
     // if (activeDropDown) {
     //   console.log('should add');
     //   div.style.display = 'block';
