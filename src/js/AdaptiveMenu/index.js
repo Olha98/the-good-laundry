@@ -1,47 +1,5 @@
 //!  - important control container, item container, different style, and add more words
 //! transfer component to class
-class DropDown {
-  constructor(container) {
-    this.container = container;
-    // init().bind(this);
-    // append().bind(this);
-    // setContent().bind(this);
-
-    // hide().bind(this);
-    // show().bind(this);
-    // remove().bind(this);
-  }
-
-  init() {
-    const ul = document.createElement('ul');
-    this.container.classList = 'drop-down_container';
-    ul.classList = 'drop-down_list';
-    this.container.this.append(ul);
-  }
-
-  append(isHide) {
-    if (isHide) {
-      hide();
-    }
-    this.after(this.ul);
-  }
-
-  setContent = list => {
-    list.map(item => this.ul.append(item));
-  };
-
-  hide() {
-    this.container.style.display = 'none';
-  }
-  show() {
-    this.container.style.display = 'block';
-  }
-  remove() {
-    this.container.remove();
-  }
-}
-
-// const dropDown = new DropDown();
 
 class AdaptiveMenu extends HTMLElement {
   static initState = {
@@ -59,11 +17,8 @@ class AdaptiveMenu extends HTMLElement {
     this.lis = Array.from(this.querySelectorAll('li'));
 
     this.state = { ...AdaptiveMenu.initState };
-    this.size = this.offsetWidth;
+    this.widthContainer = this.offsetWidth;
 
-    // this.controlContainerSize();
-
-    // this.openDropDown();
     this.stylesheet();
     this.controlContainerSize(this.offsetWidth);
     this.putLogo();
@@ -84,23 +39,31 @@ class AdaptiveMenu extends HTMLElement {
   }
 
   controlContainerSize(width) {
-    // let moveToLarge;
-    // let moveToSmall;
-    // if (width >= this.size) {
-    //   moveToLarge = true;
-    //   moveToSmall = false;
-    //   // console.log('to large');
-    // } else {
-    //   moveToSmall = true;
-    //   moveToLarge = false;
-    //   // console.log('to small');
-    // }
-    // console.log(moveToLarge, 'moveToLarge');
-    // console.log(moveToSmall, 'moveToSmall');
+    let toSmall = false;
+    let toLarge = false;
+    let toMiddle = false;
+
+    console.log(this.widthContainer, width);
+
+    if (this.widthContainer === width) {
+      toMiddle = true;
+      console.log('to middle');
+    }
+    if (this.widthContainer > width && this.widthContainer !== width) {
+      toSmall = true;
+      toLarge = false;
+      console.log('to small');
+    }
+    if (this.widthContainer < width && this.widthContainer !== width) {
+      toLarge = true;
+      toSmall = false;
+      console.log('to large');
+    }
+    this.widthContainer = width;
 
     const { dropDownList, menuList } = this.state;
     const widthList = width;
-    let widthItems = 0; // common width all items
+    let widthItems = 0;
     let menuChild = Array.from(this.uls[0].children);
 
     //create label for dropDown
@@ -119,71 +82,53 @@ class AdaptiveMenu extends HTMLElement {
 
     //controlling space
     menuChild.forEach(item => (widthItems += item.offsetWidth));
-    const spaceBetweenItems = (widthList - widthItems) / menuChild.length;
+    const spaceBetweenAllItems = (widthList - widthItems) / menuChild.length;
+    console.log(spaceBetweenAllItems, 'spaceBetweenAllItems');
 
-    //* start logic
-
-
-    if (spaceBetweenItems <= this.gap) {
-      console.log('NO SPACE');
-        console.log(spaceBetweenItems, 'spaceBetweenItems');
-      // console.log(spaceBetweenItems, 'spaceBetweenItems');
-
+    if (spaceBetweenAllItems <= this.gap && (toSmall || toMiddle)) {
       this.uls[0].append(li);
       widthItems += li.offsetWidth;
 
-      let checkSpace = 0;
+      let checkMenuSpace = 0;
 
       menuChild.reverse().map((item, index) => {
         widthItems -= item.offsetWidth;
 
         const newSlice = menuChild.slice(0, -index).length;
 
-        if (parseInt(checkSpace.toFixed()) <= Number(this.gap)) {
+        if (parseInt(checkMenuSpace.toFixed()) <= Number(this.gap) + 10) {
           this.uls[0].removeChild(item);
-          checkSpace = newSlice && (widthList - widthItems) / newSlice;
+          checkMenuSpace = newSlice && (widthList - widthItems) / newSlice;
 
           !item.classList.contains('dropDown_label') && dropDownList.push(item);
         } else {
           menuList.push(item);
         }
       });
-    } else {
-      let widthDynamic = 0;
-      console.log('HELLLO@');
-        console.log(spaceBetweenItems, 'spaceBetweenItems2');
-      if (spaceBetweenItems >= this.gap) {
-        const lastChild = this.uls[0].lastChild;
-        // lastChild.previousElementSibling.after(dropDownList[dropDownList.length - 1]);
-
-        // this.uls[0].append(dropDownList[dropDownList.length - 1]);
-        console.log(dropDownList.length, 'dropDownList');
-
-        dropDownList.reverse().map(item => {
-          // widthItems += item.offsetWidth;
-          // this.uls[0].append(item);
-          // menuList.push(item);
-          // console.log(item.textCont);
-          // widthItems += item.offsetWidth;
-          // this.uls[0].append(item);
-          // menuList.push(item);
-        });
-      }
-      console.log(menuChild.length, 'menuChild');
     }
 
-    // let commonWidth = 0;
-    // const nav = [];
+    const menuChildToLarge = Array.from(this.uls[0]);
+    menuChildToLarge.forEach(item => (widthItems += item.offsetWidth));
+    const spaceBetween = (widthList - widthItems) / menuChild.length;
 
-    // menuChild.map(item => {
-    //   console.log(commonWidth, 'commonWidth');
-    //   if (commonWidth <= this.gap) {
-    //     commonWidth += item.offsetWidth + this.gap;
-    //     nav.push(item);
-    //   }
-    // });
-    // console.log(this.lis, 'this.lis');
-    // console.log(nav, 'hghgh');
+    if (spaceBetween >= this.gap && toLarge && dropDownList.length > 0) {
+      console.log('HELLLO@');
+      const lastChild = this.uls[0].lastChild;
+
+      let checkMenuSpace = 0;
+
+      console.log(menuChild.length, 'this.uls[0]1');
+
+      this.uls[0].insertBefore(dropDownList[0], lastChild);
+
+      dropDownList.map((item, index) => {
+        const element = dropDownList[dropDownList.length - index] || item;
+        // widthItems += item.offsetWidth;
+
+        const newSlice = menuChild.slice(0, -index).length;
+      });
+      // }
+    }
   }
 
   putLogo() {
@@ -214,17 +159,16 @@ class AdaptiveMenu extends HTMLElement {
     li.appendChild(img);
 
     // find middle position and  put in center of list
-    // console.log(menuList, 'menuList');
 
     const length = menuList.length > 0 ? menuList.length : this.lis.length;
 
     const centerElement = Math.floor(length / 2);
 
-    // if (menuList.length > 0) {
-    //   this.uls[0].children[centerElement - 1].after(li);
-    // } else {
-    //   this.uls[0].children[centerElement].before(li);
-    // }
+    if (menuList.length > 0) {
+      this.uls[0].children[centerElement - 1].after(li);
+    } else {
+      this.uls[0].children[centerElement].before(li);
+    }
   }
 
   initDropDown() {
@@ -280,15 +224,11 @@ class AdaptiveMenu extends HTMLElement {
 
       resizeId = setTimeout(() => {
         const dinamicWidth = this.offsetWidth;
-
         this.controlContainerSize(dinamicWidth);
       }, 50);
     });
 
     labelElement?.addEventListener('click', () => this.toggleDropDown());
-    // document.addEventListener('DOMContentLoaded', () => {
-    //   ItcSlider.getOrCreateInstance('.slider');
-    // });
   }
 }
 
