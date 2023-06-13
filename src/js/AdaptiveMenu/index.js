@@ -38,7 +38,25 @@ class AdaptiveMenu extends HTMLElement {
     this.uls[0].style.gap = `${this.gap}px`;
   }
 
-  controlContainerSize(width) {
+  addLabel() {
+    //create label for dropDown
+    const li = document.createElement('li');
+    li.classList = 'dropDown_label';
+
+    const p = document.createElement('p');
+    let labelActiveDropDown = this.getAttribute('label');
+    p.innerHTML = labelActiveDropDown;
+
+    const span = document.createElement('span');
+    span.innerHTML = '&#9660;';
+
+    p.append(span);
+    li.append(p);
+
+    return li;
+  }
+
+  directionForResize(width) {
     let toSmall = false;
     let toLarge = false;
     let toMiddle = false;
@@ -61,74 +79,60 @@ class AdaptiveMenu extends HTMLElement {
     }
     this.widthContainer = width;
 
+    return { toSmall, toLarge, toMiddle };
+  }
+
+  controlContainerSize(width) {
+    const li = this.addLabel();
+    const { toSmall, toLarge, toMiddle } = this.directionForResize(width);
     const { dropDownList, menuList } = this.state;
+
     const widthList = width;
     let widthItems = 0;
+
+    const menuAdd = Array.from(this.uls[0].children);
+    console.log(menuAdd, 'menuAdd');
+
     let menuChild = Array.from(this.uls[0].children);
 
-    //create label for dropDown
-    const li = document.createElement('li');
-    li.classList = 'dropDown_label';
+    const dividedMenu = menuChild.reduce((acc, elem, index) => {
+      acc = {
+        itemsIndex: index,
+        widthItems: (widthItems += elem.offsetWidth + Number(this.gap)),
+        freeSpace: (width - acc.widthItems) / index,
+        arrayMenu: [],
+        arrayDropDown: [],
+      };
 
-    const p = document.createElement('p');
-    let labelActiveDropDown = this.getAttribute('label');
-    p.innerHTML = labelActiveDropDown;
+      const moveToIndexes = index => {
+        const saveMenuChild = [...menuChild];
+        acc.arrayMenu = saveMenuChild.slice(0, index);
 
-    const span = document.createElement('span');
-    span.innerHTML = '&#9660;';
+        acc.arrayDropDown = saveMenuChild.splice(acc.arrayMenu.length, menuChild.length);
 
-    p.append(span);
-    li.append(p);
+        this.state.dropDownList = acc.arrayDropDown;
+        this.state.menuList = acc.arrayMenu;
 
-    //controlling space
-    menuChild.forEach(item => (widthItems += item.offsetWidth));
-    const spaceBetweenAllItems = (widthList - widthItems) / menuChild.length;
-    console.log(spaceBetweenAllItems, 'spaceBetweenAllItems');
+        this.uls[0].replaceChildren(...acc.arrayMenu);
+        if (!document.contains(li)) this.uls[0].append(li);
+      };
 
-    if (spaceBetweenAllItems <= this.gap && (toSmall || toMiddle)) {
-      this.uls[0].append(li);
-      widthItems += li.offsetWidth;
+      console.log(acc.freeSpace, 'acc.freeSpace');
 
-      let checkMenuSpace = 0;
+      if (acc.freeSpace >= Number(this.gap) && !toLarge) {
+        moveToIndexes(acc.itemsIndex);
+      }
 
-      menuChild.reverse().map((item, index) => {
-        widthItems -= item.offsetWidth;
+      if (toLarge) {
+        location.reload();
+      }
+      // if (acc.arrayDropDown === 0) {
+      //   console.log('first');
 
-        const newSlice = menuChild.slice(0, -index).length;
-
-        if (parseInt(checkMenuSpace.toFixed()) <= Number(this.gap) + 10) {
-          this.uls[0].removeChild(item);
-          checkMenuSpace = newSlice && (widthList - widthItems) / newSlice;
-
-          !item.classList.contains('dropDown_label') && dropDownList.push(item);
-        } else {
-          menuList.push(item);
-        }
-      });
-    }
-
-    const menuChildToLarge = Array.from(this.uls[0]);
-    menuChildToLarge.forEach(item => (widthItems += item.offsetWidth));
-    const spaceBetween = (widthList - widthItems) / menuChild.length;
-
-    if (spaceBetween >= this.gap && toLarge && dropDownList.length > 0) {
-      console.log('HELLLO@');
-      const lastChild = this.uls[0].lastChild;
-
-      let checkMenuSpace = 0;
-
-      console.log(menuChild.length, 'this.uls[0]1');
-
-      this.uls[0].insertBefore(dropDownList[0], lastChild);
-
-      dropDownList.map((item, index) => {
-        const element = dropDownList[dropDownList.length - index] || item;
-        // widthItems += item.offsetWidth;
-
-        const newSlice = menuChild.slice(0, -index).length;
-      });
       // }
-    }
+
+      return acc;
+    }, {});
   }
 
   putLogo() {
@@ -229,6 +233,7 @@ class AdaptiveMenu extends HTMLElement {
     });
 
     labelElement?.addEventListener('click', () => this.toggleDropDown());
+    //  labelElement?.addEventListener('mouseup', () => window.reloude);
   }
 }
 
