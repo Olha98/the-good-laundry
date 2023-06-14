@@ -34,6 +34,7 @@
   transition: all 0.3 linear;
   display: none;
 }
+
 .drop-down_list {
   display: flex;
   flex-direction: column;
@@ -194,12 +195,13 @@
   transition: all 0.3s ease-out;
 }
 /* //! */
+.menu__label,
 .menu__item {
   display: block;
   padding: 12px 24px;
   color: #333;
-  /* font-size: 20px; */
-  font-size: 20px;
+  font-size: 30px;
+
   font-weight: 500;
   text-decoration: none;
 }
@@ -262,6 +264,9 @@
   .header__menu nav {
     width: 100%;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .header__menu ul {

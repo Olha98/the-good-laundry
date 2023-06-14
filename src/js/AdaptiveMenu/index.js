@@ -3,10 +3,9 @@
 
 class AdaptiveMenu extends HTMLElement {
   static initState = {
-    // dropDown: new DropDown(),
     activeDropDown: false,
     dropDownList: [],
-    menuList: [],
+    menuList: 0,
   };
 
   constructor() {
@@ -15,15 +14,26 @@ class AdaptiveMenu extends HTMLElement {
     this.logo = this.getAttribute('logo');
     this.uls = Array.from(this.querySelectorAll('ul'));
     this.lis = Array.from(this.querySelectorAll('li'));
+    this.a = Array.from(this.querySelectorAll('a'));
 
     this.state = { ...AdaptiveMenu.initState };
     this.widthContainer = this.offsetWidth;
 
-    this.stylesheet();
-    this.controlContainerSize(this.offsetWidth);
-    this.putLogo();
+    this.li = this.addLabel();
+
+    const resizeObserver = new ResizeObserver(this.onResize.bind(this));
+
+    resizeObserver.observe(this.uls[0]);
+
+    //  const mutationObserver = new MutationObserver(this.onMutation.bind(this));
+    //  resizeObserver.observe(this.uls[0]);
+
     this.dropDown = this.initDropDown();
     this.dropDown.append(true);
+
+    this.addLogo();
+
+    if (!document.contains(this.li)) this.uls[0].after(this.li);
   }
 
   connectedCallback() {
@@ -34,116 +44,64 @@ class AdaptiveMenu extends HTMLElement {
     this.bindEvents();
   }
 
-  stylesheet() {
-    this.uls[0].style.gap = `${this.gap}px`;
+  onResize(entries) {
+    const entry = entries[0];
+    const container = entry.target;
+    let widthItems = 0;
+
+    let listItems = container.children;
+    let arrayListItem = Array.from(listItems);
+
+    const { dropDownList } = this.state;
+    const labelElement = this.querySelector('.dropDown_label');
+    arrayListItem.map(item => (widthItems += item.offsetWidth + Number(this.gap)));
+
+    const ITEM_MAX_WIDTH = widthItems / arrayListItem.length;
+    labelElement.style.marginLeft = `${ITEM_MAX_WIDTH / 2}px`;
+
+    const itemNeeded = Math.ceil(entry.contentRect.width / ITEM_MAX_WIDTH);
+    this.state.dropDownList.push(...arrayListItem.slice(itemNeeded));
+
+    while (listItems.length > itemNeeded) listItems[listItems.length - 1].remove();
+    while (listItems.length < itemNeeded) {
+      const element = dropDownList.splice(0, 1);
+      console.log(element, 'item');
+
+      container.append(...dropDownList.splice(0, 1));
+    }
+
+    if (dropDownList.length === 0) this.li.remove();
   }
 
   addLabel() {
     //create label for dropDown
     const li = document.createElement('li');
-    li.classList = 'dropDown_label';
+    li.classList = 'dropDown_label menu__label';
 
-    const p = document.createElement('p');
+    const a = document.createElement('a');
     let labelActiveDropDown = this.getAttribute('label');
-    p.innerHTML = labelActiveDropDown;
+    a.innerHTML = labelActiveDropDown;
 
     const span = document.createElement('span');
     span.innerHTML = '&#9660;';
 
-    p.append(span);
-    li.append(p);
+    a.append(span);
+    li.append(a);
 
     return li;
   }
 
-  directionForResize(width) {
-    let toSmall = false;
-    let toLarge = false;
-    let toMiddle = false;
-
-    console.log(this.widthContainer, width);
-
-    if (this.widthContainer === width) {
-      toMiddle = true;
-      console.log('to middle');
-    }
-    if (this.widthContainer > width && this.widthContainer !== width) {
-      toSmall = true;
-      toLarge = false;
-      console.log('to small');
-    }
-    if (this.widthContainer < width && this.widthContainer !== width) {
-      toLarge = true;
-      toSmall = false;
-      console.log('to large');
-    }
-    this.widthContainer = width;
-
-    return { toSmall, toLarge, toMiddle };
-  }
-
-  controlContainerSize(width) {
-    const li = this.addLabel();
-    const { toSmall, toLarge, toMiddle } = this.directionForResize(width);
-    const { dropDownList, menuList } = this.state;
-
-    const widthList = width;
-    let widthItems = 0;
-
-    const menuAdd = Array.from(this.uls[0].children);
-    console.log(menuAdd, 'menuAdd');
-
-    let menuChild = Array.from(this.uls[0].children);
-
-    const dividedMenu = menuChild.reduce((acc, elem, index) => {
-      acc = {
-        itemsIndex: index,
-        widthItems: (widthItems += elem.offsetWidth + Number(this.gap)),
-        freeSpace: (width - acc.widthItems) / index,
-        arrayMenu: [],
-        arrayDropDown: [],
-      };
-
-      const moveToIndexes = index => {
-        const saveMenuChild = [...menuChild];
-        acc.arrayMenu = saveMenuChild.slice(0, index);
-
-        acc.arrayDropDown = saveMenuChild.splice(acc.arrayMenu.length, menuChild.length);
-
-        this.state.dropDownList = acc.arrayDropDown;
-        this.state.menuList = acc.arrayMenu;
-
-        this.uls[0].replaceChildren(...acc.arrayMenu);
-        if (!document.contains(li)) this.uls[0].append(li);
-      };
-
-      console.log(acc.freeSpace, 'acc.freeSpace');
-
-      if (acc.freeSpace >= Number(this.gap) && !toLarge) {
-        moveToIndexes(acc.itemsIndex);
-      }
-
-      if (toLarge) {
-        location.reload();
-      }
-      // if (acc.arrayDropDown === 0) {
-      //   console.log('first');
-
-      // }
-
-      return acc;
-    }, {});
-  }
-
-  putLogo() {
-    const { menuList } = this.state;
-
+  addLogo() {
+    const { menuList, dropDownList } = this.state;
+    console.log(dropDownList, 'hhhh');
     //generate img
     const li = document.createElement('li');
     const img = document.createElement('img');
 
+    li.style.width = '50px';
+
     const splitImg = this.logo.split('.');
-    const format = splitImg[splitImg.length - 1]; //svg
+    const format = splitImg[splitImg.length - 1];
 
     const imageAtt = {
       src: this.logo,
@@ -200,6 +158,7 @@ class AdaptiveMenu extends HTMLElement {
         }
         this.after(div);
       },
+
       remove: () => div.remove(),
       setContent,
     };
@@ -207,9 +166,9 @@ class AdaptiveMenu extends HTMLElement {
 
   toggleDropDown() {
     const { dropDownList, activeDropDown } = this.state;
-    this.state.activeDropDown = !activeDropDown;
 
     this.dropDown.setContent(dropDownList);
+    this.state.activeDropDown = !activeDropDown;
 
     if (activeDropDown) {
       this.dropDown.show();
@@ -220,20 +179,7 @@ class AdaptiveMenu extends HTMLElement {
 
   bindEvents() {
     const labelElement = this.querySelector('.dropDown_label');
-    let size = this.offsetWidth;
-
-    let resizeId;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeId);
-
-      resizeId = setTimeout(() => {
-        const dinamicWidth = this.offsetWidth;
-        this.controlContainerSize(dinamicWidth);
-      }, 50);
-    });
-
-    labelElement?.addEventListener('click', () => this.toggleDropDown());
-    //  labelElement?.addEventListener('mouseup', () => window.reloude);
+    labelElement.addEventListener('click', () => this.toggleDropDown());
   }
 }
 
