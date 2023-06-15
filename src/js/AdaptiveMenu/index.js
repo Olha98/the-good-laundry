@@ -1,12 +1,63 @@
+class Logo {
+  constructor() {
+    this.li = document.createElement('li');
+  }
+
+  init() {
+    this.li.classList = 'menu__logo';
+    const img = document.createElement('img');
+
+    this.li.style.width = '70px';
+
+    const splitImg = this.logo.split('.');
+    const format = splitImg[splitImg.length - 1];
+
+    const imageAtt = {
+      src: this.logo,
+      alt: 'Logo',
+      class: 'logo__svg',
+      width: '77',
+      height: '50',
+      tabindex: '0',
+      itemprop: 'url',
+    };
+
+    Object.keys(imageAtt).map(att => {
+      img.setAttribute(att, imageAtt[att]);
+    });
+
+    if (format == 'svg') img.setAttribute('role', 'img');
+    this.li.appendChild(img);
+  }
+
+  append(isHide) {
+    if (isHide) {
+      hide();
+    }
+    this.after(this.li);
+  }
+
+  hide() {
+    this.li.style.display = 'none';
+  }
+  show() {
+    this.li.style.display = 'block';
+  }
+  remove() {
+    this.li.remove();
+  }
+}
+
+const LogoExemplar = new Logo();
+
 class AdaptiveMenu extends HTMLElement {
   static initState = {
     activeDropDown: false,
     dropDownList: [],
-    menuList: 0,
   };
 
   static get observedAttributes() {
-    return ['menu-length'];
+    return ['menu-length', 'data-list'];
   }
 
   constructor() {
@@ -15,6 +66,7 @@ class AdaptiveMenu extends HTMLElement {
     this.logo = this.getAttribute('logo');
     this.uls = Array.from(this.querySelectorAll('ul'));
     this.lis = Array.from(this.querySelectorAll('li'));
+
     this.menuLength = 0;
 
     this.state = { ...AdaptiveMenu.initState };
@@ -24,16 +76,10 @@ class AdaptiveMenu extends HTMLElement {
     resizeObserver.observe(this.uls[0]);
 
     this.dropDown = this.initDropDown();
-    // this.dropDown = DropDown();
     this.dropDown.append(true);
 
     this.logo = this.initLogo();
-    // this.logo = Logo();
     this.logo.append(true);
-
-    // this.label = this.initLabel();
-    // // this.label = Label();
-    // this.label.append(true);
 
     this.li = this.addLabel();
     if (!document.contains(this.li)) this.uls[0].after(this.li);
@@ -80,7 +126,7 @@ class AdaptiveMenu extends HTMLElement {
       }
 
       if (arrayListItem.length > itemNeeded) this.state.dropDownList.push(...arrayListItem.slice(itemNeeded));
-      while (listItems.length > itemNeeded)  listItems[listItems.length - 1].remove();
+      while (listItems.length > itemNeeded) listItems[listItems.length - 1].remove();
       while (listItems.length < itemNeeded && dropDownList.length > 0) container.append(...dropDownList.splice(0, 1));
 
       this.setAttribute('menu-length', listItems.length);
@@ -215,8 +261,7 @@ class AdaptiveMenu extends HTMLElement {
   }
 
   bindEvents() {
-    const labelElement = this.querySelector('.dropDown_label');
-    labelElement.addEventListener('click', () => this.toggleDropDown());
+    this.li.addEventListener('click', () => this.toggleDropDown());
   }
 }
 
