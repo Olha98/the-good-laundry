@@ -20,8 +20,6 @@ class AdaptiveMenu extends HTMLElement {
     this.state = { ...AdaptiveMenu.initState };
     this.widthContainer = this.offsetWidth;
 
-
-
     const resizeObserver = new ResizeObserver(this.onResize.bind(this));
     resizeObserver.observe(this.uls[0]);
 
@@ -46,7 +44,6 @@ class AdaptiveMenu extends HTMLElement {
       this.menuLength = newValue;
       this.logo.remove();
       this.addLogo();
-
     }
   }
 
@@ -59,48 +56,46 @@ class AdaptiveMenu extends HTMLElement {
   }
 
   onResize(entries) {
-    const { dropDownList } = this.state;
-    const entry = entries[0];
-    const container = entry.target;
-    let widthItems = 0;
+    window.requestAnimationFrame(() => {
+      if (!Array.isArray(entries) || !entries.length) {
+        return;
+      }
 
-    let listItems = container.children;
+      const { dropDownList } = this.state;
 
-    let arrayListItem = Array.from(listItems);
+      const entry = entries[0];
+      const container = entry.target;
+      let listItems = container.children;
 
-    arrayListItem.map(item => (widthItems += item.offsetWidth + Number(this.gap)));
+      let widthItems = 0;
+      let arrayListItem = Array.from(listItems);
+      arrayListItem.map(item => (widthItems += item.offsetWidth + Number(this.gap)));
+      const ITEM_MAX_WIDTH = widthItems / arrayListItem.length;
 
-    const ITEM_MAX_WIDTH = widthItems / arrayListItem.length;
+      const itemNeeded = Math.ceil(entry.contentRect.width / ITEM_MAX_WIDTH);
+      const labelElement = this.querySelector('.dropDown_label');
 
-    const itemNeeded = Math.ceil(entry.contentRect.width / ITEM_MAX_WIDTH);
-    // const labelElement = this.querySelector('.dropDown_label');
+      if (labelElement !== undefined) {
+        labelElement.style.marginLeft = `${ITEM_MAX_WIDTH / 3}px`;
+      }
 
-    // if (labelElement !== undefined) {
-    //   labelElement.style.marginLeft = `${ITEM_MAX_WIDTH / 3}px`;
-    // }
+      if (arrayListItem.length > itemNeeded) this.state.dropDownList.push(...arrayListItem.slice(itemNeeded));
+      while (listItems.length > itemNeeded)  listItems[listItems.length - 1].remove();
+      while (listItems.length < itemNeeded && dropDownList.length > 0) container.append(...dropDownList.splice(0, 1));
 
-    if (arrayListItem.length > itemNeeded) this.state.dropDownList.push(...arrayListItem.slice(itemNeeded));
+      this.setAttribute('menu-length', listItems.length);
 
-    while (listItems.length > itemNeeded) {
-      listItems[listItems.length - 1].remove();
-    }
+      if (entry.contentRect.width === 0)
+        container.append(...dropDownList.splice(dropDownList[dropDownList.length - 1], 1));
+      if (dropDownList.length === 0 || listItems.length === 0) this.li.remove();
 
-    while (listItems.length < itemNeeded && dropDownList.length > 0) container.append(...dropDownList.splice(0, 1));
-
-    this.setAttribute('menu-length', listItems.length);
-
-    if (entry.contentRect.width === 0)
-      container.append(...dropDownList.splice(dropDownList[dropDownList.length - 1], 1));
-    // if (dropDownList.length === 0 || listItems.length === 0) this.li.remove();
-
-     if (window.matchMedia('screen and (max-width: 768px)').matches == true) {
-       this.logo.container.style.opacity = '0';
-     } else {
-       this.logo.container.style.opacity = '1';
-     }
-
+      if (window.matchMedia('screen and (max-width: 768px)').matches == true) {
+        this.li.style.opacity = '0';
+      } else {
+        this.li.style.opacity = '1';
+      }
+    });
   }
-
 
   addLabel() {
     const li = document.createElement('li');
