@@ -1,13 +1,6 @@
 class DropDown {
   constructor(container) {
     this.container = container;
-    // init().bind(this);
-    // append().bind(this);
-    // setContent().bind(this);
-
-    // hide().bind(this);
-    // show().bind(this);
-    // remove().bind(this);
   }
 
   init() {

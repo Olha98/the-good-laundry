@@ -1,6 +1,3 @@
-//!  - important control container, item container, different style, and add more words
-//! transfer component to class
-
 class AdaptiveMenu extends HTMLElement {
   static initState = {
     activeDropDown: false,
@@ -8,32 +5,49 @@ class AdaptiveMenu extends HTMLElement {
     menuList: 0,
   };
 
+  static get observedAttributes() {
+    return ['menu-length'];
+  }
+
   constructor() {
     super();
     this.gap = this.getAttribute('gap') || 30;
     this.logo = this.getAttribute('logo');
     this.uls = Array.from(this.querySelectorAll('ul'));
     this.lis = Array.from(this.querySelectorAll('li'));
-    this.a = Array.from(this.querySelectorAll('a'));
+    this.menuLength = 0;
 
     this.state = { ...AdaptiveMenu.initState };
     this.widthContainer = this.offsetWidth;
 
-    this.li = this.addLabel();
+
 
     const resizeObserver = new ResizeObserver(this.onResize.bind(this));
-
     resizeObserver.observe(this.uls[0]);
 
-    //  const mutationObserver = new MutationObserver(this.onMutation.bind(this));
-    //  resizeObserver.observe(this.uls[0]);
-
     this.dropDown = this.initDropDown();
+    // this.dropDown = DropDown();
     this.dropDown.append(true);
 
-    this.addLogo();
+    this.logo = this.initLogo();
+    // this.logo = Logo();
+    this.logo.append(true);
 
+    // this.label = this.initLabel();
+    // // this.label = Label();
+    // this.label.append(true);
+
+    this.li = this.addLabel();
     if (!document.contains(this.li)) this.uls[0].after(this.li);
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === 'menu-length' && +oldValue !== +newValue) {
+      this.menuLength = newValue;
+      this.logo.remove();
+      this.addLogo();
+
+    }
   }
 
   connectedCallback() {
@@ -45,36 +59,50 @@ class AdaptiveMenu extends HTMLElement {
   }
 
   onResize(entries) {
+    const { dropDownList } = this.state;
     const entry = entries[0];
     const container = entry.target;
     let widthItems = 0;
 
     let listItems = container.children;
+
     let arrayListItem = Array.from(listItems);
 
-    const { dropDownList } = this.state;
-    const labelElement = this.querySelector('.dropDown_label');
     arrayListItem.map(item => (widthItems += item.offsetWidth + Number(this.gap)));
 
     const ITEM_MAX_WIDTH = widthItems / arrayListItem.length;
-    labelElement.style.marginLeft = `${ITEM_MAX_WIDTH / 2}px`;
 
     const itemNeeded = Math.ceil(entry.contentRect.width / ITEM_MAX_WIDTH);
-    this.state.dropDownList.push(...arrayListItem.slice(itemNeeded));
+    // const labelElement = this.querySelector('.dropDown_label');
 
-    while (listItems.length > itemNeeded) listItems[listItems.length - 1].remove();
-    while (listItems.length < itemNeeded) {
-      const element = dropDownList.splice(0, 1);
-      console.log(element, 'item');
+    // if (labelElement !== undefined) {
+    //   labelElement.style.marginLeft = `${ITEM_MAX_WIDTH / 3}px`;
+    // }
 
-      container.append(...dropDownList.splice(0, 1));
+    if (arrayListItem.length > itemNeeded) this.state.dropDownList.push(...arrayListItem.slice(itemNeeded));
+
+    while (listItems.length > itemNeeded) {
+      listItems[listItems.length - 1].remove();
     }
 
-    if (dropDownList.length === 0) this.li.remove();
+    while (listItems.length < itemNeeded && dropDownList.length > 0) container.append(...dropDownList.splice(0, 1));
+
+    this.setAttribute('menu-length', listItems.length);
+
+    if (entry.contentRect.width === 0)
+      container.append(...dropDownList.splice(dropDownList[dropDownList.length - 1], 1));
+    // if (dropDownList.length === 0 || listItems.length === 0) this.li.remove();
+
+     if (window.matchMedia('screen and (max-width: 768px)').matches == true) {
+       this.logo.container.style.opacity = '0';
+     } else {
+       this.logo.container.style.opacity = '1';
+     }
+
   }
 
+
   addLabel() {
-    //create label for dropDown
     const li = document.createElement('li');
     li.classList = 'dropDown_label menu__label';
 
@@ -91,14 +119,12 @@ class AdaptiveMenu extends HTMLElement {
     return li;
   }
 
-  addLogo() {
-    const { menuList, dropDownList } = this.state;
-    console.log(dropDownList, 'hhhh');
-    //generate img
+  initLogo() {
     const li = document.createElement('li');
+    li.classList = 'menu__logo';
     const img = document.createElement('img');
 
-    li.style.width = '50px';
+    li.style.width = '70px';
 
     const splitImg = this.logo.split('.');
     const format = splitImg[splitImg.length - 1];
@@ -120,16 +146,32 @@ class AdaptiveMenu extends HTMLElement {
     if (format == 'svg') img.setAttribute('role', 'img');
     li.appendChild(img);
 
-    // find middle position and  put in center of list
+    const hide = () => (li.style.display = 'none');
 
-    const length = menuList.length > 0 ? menuList.length : this.lis.length;
+    return {
+      container: li,
+      show: () => (li.style.display = 'block'),
+      hide,
+      append: isHide => {
+        if (isHide) {
+          hide();
+        }
+        this.after(li);
+      },
 
-    const centerElement = Math.floor(length / 2);
+      remove: () => li.remove(),
+    };
+  }
 
-    if (menuList.length > 0) {
-      this.uls[0].children[centerElement - 1].after(li);
+  addLogo() {
+    this.logo.show();
+    const menuLength = this.getAttribute('menu-length');
+    const centerElement = Math.floor(menuLength / 2);
+
+    if (menuLength > 0) {
+      this.uls[0].children[centerElement - 1].after(this.logo.container);
     } else {
-      this.uls[0].children[centerElement].before(li);
+      this.uls[0].children[centerElement].before(this.logo.container);
     }
   }
 
