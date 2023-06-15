@@ -1,6 +1,7 @@
- class Logo {
-  constructor() {
+class Logo {
+  constructor(logo) {
     this.li = document.createElement('li');
+    this.logo = logo;
   }
 
   init() {
@@ -32,7 +33,7 @@
 
   append(isHide) {
     if (isHide) {
-      hide();
+      this.hide();
     }
     this.after(this.li);
   }

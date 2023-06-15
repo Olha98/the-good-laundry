@@ -1,54 +1,4 @@
-class Logo {
-  constructor() {
-    this.li = document.createElement('li');
-  }
 
-  init() {
-    this.li.classList = 'menu__logo';
-    const img = document.createElement('img');
-
-    this.li.style.width = '70px';
-
-    const splitImg = this.logo.split('.');
-    const format = splitImg[splitImg.length - 1];
-
-    const imageAtt = {
-      src: this.logo,
-      alt: 'Logo',
-      class: 'logo__svg',
-      width: '77',
-      height: '50',
-      tabindex: '0',
-      itemprop: 'url',
-    };
-
-    Object.keys(imageAtt).map(att => {
-      img.setAttribute(att, imageAtt[att]);
-    });
-
-    if (format == 'svg') img.setAttribute('role', 'img');
-    this.li.appendChild(img);
-  }
-
-  append(isHide) {
-    if (isHide) {
-      hide();
-    }
-    this.after(this.li);
-  }
-
-  hide() {
-    this.li.style.display = 'none';
-  }
-  show() {
-    this.li.style.display = 'block';
-  }
-  remove() {
-    this.li.remove();
-  }
-}
-
-const LogoExemplar = new Logo();
 
 class AdaptiveMenu extends HTMLElement {
   static initState = {
@@ -77,7 +27,8 @@ class AdaptiveMenu extends HTMLElement {
 
     this.dropDown = this.initDropDown();
     this.dropDown.append(true);
-
+    // this.logo = new Logo(this.logo, this);
+    // this.logo.init();
     this.logo = this.initLogo();
     this.logo.append(true);
 
@@ -121,11 +72,10 @@ class AdaptiveMenu extends HTMLElement {
       const itemNeeded = Math.ceil(entry.contentRect.width / ITEM_MAX_WIDTH);
       const labelElement = this.querySelector('.dropDown_label');
 
-      if (labelElement !== undefined) {
-        labelElement.style.marginLeft = `${ITEM_MAX_WIDTH / 3}px`;
-      }
+      if (labelElement !== undefined) labelElement.style.marginLeft = `${ITEM_MAX_WIDTH / 3}px`;
 
       if (arrayListItem.length > itemNeeded) this.state.dropDownList.push(...arrayListItem.slice(itemNeeded));
+
       while (listItems.length > itemNeeded) listItems[listItems.length - 1].remove();
       while (listItems.length < itemNeeded && dropDownList.length > 0) container.append(...dropDownList.splice(0, 1));
 
