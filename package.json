@@ -20,6 +20,7 @@
   "author": "Olha Hrymchak <forwork1177@gmail.com>",
   "homepage": "https://Olha98.github.io/the-good-laundry",
   "license": "ISC",
+
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@soda/friendly-errors-webpack-plugin": "^1.8.1",
@@ -30,6 +31,7 @@
     "html-webpack-plugin": "^5.5.1",
     "http-server": "^14.1.1",
     "img-loader": "^4.0.0",
+    "imports-loader": "^4.0.1",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss-loader": "^7.3.2",
     "sass": "^1.62.1",

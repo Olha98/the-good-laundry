@@ -1,2 +1,1 @@
-const hello = 8
-console.log(hello)
+const number = 8;

@@ -5,6 +5,8 @@ const webpack = require('webpack');
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+
+
 module.exports = {
   mode: 'development',
   context: path.resolve(__dirname, './src'),
@@ -51,6 +53,15 @@ module.exports = {
         test: /\.html$/,
         use: 'html-loader',
       },
+      {
+        test: require.resolve('./src/js/AdaptiveMenu/components/logo.js'),
+        loader: 'imports-loader',
+        options: {
+          syntax: 'default',
+          type: 'module',
+          imports: 'Logo',
+        },
+      },
     ],
   },
   plugins: [
@@ -65,6 +76,7 @@ module.exports = {
         useShortDoctype: true,
       },
     }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
@@ -73,7 +85,7 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
   ],
-  stats: { children: true },
+  stats: { children: true, optimizationBailout: true },
   devServer: {
     static: path.resolve(__dirname, './dist'),
     compress: true,

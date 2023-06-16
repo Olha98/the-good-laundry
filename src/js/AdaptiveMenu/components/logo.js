@@ -50,3 +50,4 @@ class Logo {
 }
 
 export const Logo = new Logo();
+export default Logo;

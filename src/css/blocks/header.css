@@ -9,6 +9,20 @@
   height: 28px;
   background-color: var(--secondary-bg-color);
 }
+.display-none {
+  display: none;
+}
+
+.display-show {
+  display: inline-block;
+}
+
+.links-animate-wrapper {
+  display: flex;
+  justify-content: space-around;
+  width: calc(100% / 3 - 33px);
+}
+
 .color-wave_header__img {
   max-height: 240px;
 }

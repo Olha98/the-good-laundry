@@ -1,5 +1,3 @@
-
-
 class AdaptiveMenu extends HTMLElement {
   static initState = {
     activeDropDown: false,
@@ -25,10 +23,13 @@ class AdaptiveMenu extends HTMLElement {
     const resizeObserver = new ResizeObserver(this.onResize.bind(this));
     resizeObserver.observe(this.uls[0]);
 
+    this.wrappers = this.initWrappers();
+    this.wrappers.append(true);
+    this.wrappers.show();
+
     this.dropDown = this.initDropDown();
     this.dropDown.append(true);
-    // this.logo = new Logo(this.logo, this);
-    // this.logo.init();
+
     this.logo = this.initLogo();
     this.logo.append(true);
 
@@ -39,6 +40,7 @@ class AdaptiveMenu extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'menu-length' && +oldValue !== +newValue) {
       this.menuLength = newValue;
+
       this.logo.remove();
       this.addLogo();
     }
@@ -65,19 +67,55 @@ class AdaptiveMenu extends HTMLElement {
       let listItems = container.children;
 
       let widthItems = 0;
-      let arrayListItem = Array.from(listItems);
+
+      const arrayListItem = Array.from(listItems).reduce((acc, item) => {
+        const children = [];
+        if (item.childNodes.length > 0 && item.tagName !== 'LI') {
+          children.push(Array.from(item.children));
+        }
+
+        acc.push(...children);
+        return acc.flat();
+      }, []);
+
       arrayListItem.map(item => (widthItems += item.offsetWidth + Number(this.gap)));
       const ITEM_MAX_WIDTH = widthItems / arrayListItem.length;
 
       const itemNeeded = Math.ceil(entry.contentRect.width / ITEM_MAX_WIDTH);
-      const labelElement = this.querySelector('.dropDown_label');
 
-      if (labelElement !== undefined) labelElement.style.marginLeft = `${ITEM_MAX_WIDTH / 3}px`;
+      console.log(arrayListItem.filter(item => item.classList.contains('display-none')));
+      console.log(arrayListItem.length - itemNeeded, 'arrayListItem.length');
 
-      if (arrayListItem.length > itemNeeded) this.state.dropDownList.push(...arrayListItem.slice(itemNeeded));
+      arrayListItem.reduce((acc, item, index, arr) => {
+        const first = this.wrappers.first_wrapper.children.length;
+        const second = this.wrappers.second_wrapper.children.length;
 
-      while (listItems.length > itemNeeded) listItems[listItems.length - 1].remove();
-      while (listItems.length < itemNeeded && dropDownList.length > 0) container.append(...dropDownList.splice(0, 1));
+        let middle = itemNeeded % 2 === 0 ? itemNeeded / 2 : Math.ceil(itemNeeded / 2);
+        arrayListItem[first - 2].style.background = 'red';
+        const contains = arrayListItem.filter(item => item.classList.contains('display-none'));
+
+        // console.log(contains, 'contains');
+
+        if (index > first - middle && index < first) {
+          arrayListItem[index].style.background = 'red';
+          item.classList.add('display-none');
+          // console.log(item);
+        }
+
+        if (index >= first + second - middle && index <= first + second) {
+          arrayListItem[index].style.background = 'blue';
+          item.classList.add('display-none');
+        }
+        // if (listItems.length < itemNeeded){
+        //   item.classList.remove('display-none');
+        // }
+
+        if (contains === itemNeeded) return acc;
+
+
+      }, []);
+
+      // while (listItems.length < itemNeeded && dropDownList.length > 0) container.append(...dropDownList.splice(0, 1));
 
       this.setAttribute('menu-length', listItems.length);
 
@@ -85,13 +123,69 @@ class AdaptiveMenu extends HTMLElement {
         container.append(...dropDownList.splice(dropDownList[dropDownList.length - 1], 1));
       if (dropDownList.length === 0 || listItems.length === 0) this.li.remove();
 
-      if (window.matchMedia('screen and (max-width: 768px)').matches == true) {
-        this.li.style.opacity = '0';
-      } else {
-        this.li.style.opacity = '1';
-      }
+      // if (window.matchMedia('screen and (max-width: 768px)').matches == true) {
+      //   this.li.style.opacity = '0';
+      // } else {
+      //   this.li.style.opacity = '1';
+      // }
     });
   }
+
+  initWrappers() {
+    const first_wrapper = document.createElement('div');
+    const second_wrapper = document.createElement('div');
+
+    first_wrapper.classList = 'links-animate-wrapper';
+    second_wrapper.classList = 'links-animate-wrapper';
+
+    const menu = Array.from(this.uls[0].children);
+
+    const splitArr = (arr, chunks) => [...Array(chunks)].map((_, c) => arr.filter((n, i) => i % chunks === c));
+
+    this.uls[0].append(first_wrapper);
+    this.uls[0].append(second_wrapper);
+
+    const hide = () => {
+      first_wrapper.style.display = 'none';
+      second_wrapper.style.display = 'none';
+    };
+
+    const show = () => {
+      first_wrapper.style.display = 'flex';
+      second_wrapper.style.display = 'flex';
+      first_wrapper.append(...splitArr(menu, 2)[0]);
+      second_wrapper.append(...splitArr(menu, 2)[1]);
+    };
+
+    const append = isHide => {
+      if (isHide) {
+        hide();
+      }
+    };
+
+    const remove = () => {
+      first_wrapper.remove();
+      second_wrapper.remove();
+    };
+
+    return {
+      first_wrapper,
+      second_wrapper,
+      getChunksArr: (arr = menu, chunks = 2) => {
+        return splitArr(arr, chunks);
+      },
+      hide,
+      append,
+      remove,
+      show,
+    };
+  }
+
+  // addWrappers() {
+  //   console.log('first')
+  //   this.uls[0].append(this.wrappers.first_wrapper);
+  //   this.uls[0].append(this.wrappers.second_wrapper);
+  // }
 
   addLabel() {
     const li = document.createElement('li');
@@ -155,6 +249,7 @@ class AdaptiveMenu extends HTMLElement {
   }
 
   addLogo() {
+    console.log('ello');
     this.logo.show();
     const menuLength = this.getAttribute('menu-length');
     const centerElement = Math.floor(menuLength / 2);
