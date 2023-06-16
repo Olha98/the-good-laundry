@@ -83,37 +83,35 @@ class AdaptiveMenu extends HTMLElement {
 
       const itemNeeded = Math.ceil(entry.contentRect.width / ITEM_MAX_WIDTH);
 
-      console.log(arrayListItem.filter(item => item.classList.contains('display-none')));
-      console.log(arrayListItem.length - itemNeeded, 'arrayListItem.length');
-
       arrayListItem.reduce((acc, item, index, arr) => {
         const first = this.wrappers.first_wrapper.children.length;
         const second = this.wrappers.second_wrapper.children.length;
 
         let middle = itemNeeded % 2 === 0 ? itemNeeded / 2 : Math.ceil(itemNeeded / 2);
-        arrayListItem[first - 2].style.background = 'red';
-        const contains = arrayListItem.filter(item => item.classList.contains('display-none'));
 
-        // console.log(contains, 'contains');
+        const contains = arrayListItem.filter(item => !item.classList.contains('display-none'));
+        console.log(contains.length);
 
         if (index > first - middle && index < first) {
           arrayListItem[index].style.background = 'red';
           item.classList.add('display-none');
-          // console.log(item);
+          // item.remove()
         }
 
         if (index >= first + second - middle && index <= first + second) {
           arrayListItem[index].style.background = 'blue';
           item.classList.add('display-none');
+          // item.remove();
         }
+
         // if (listItems.length < itemNeeded){
         //   item.classList.remove('display-none');
         // }
 
         if (contains === itemNeeded) return acc;
-
-
       }, []);
+
+      // arrayListItem.filter(item => !item.classList.contains('display-none'));
 
       // while (listItems.length < itemNeeded && dropDownList.length > 0) container.append(...dropDownList.splice(0, 1));
 
@@ -249,7 +247,6 @@ class AdaptiveMenu extends HTMLElement {
   }
 
   addLogo() {
-    console.log('ello');
     this.logo.show();
     const menuLength = this.getAttribute('menu-length');
     const centerElement = Math.floor(menuLength / 2);
